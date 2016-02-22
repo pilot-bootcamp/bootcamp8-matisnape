@@ -50,12 +50,18 @@ class ArticlesFileSystem
   end
 
   def save(articles)
-    for a in articles do
-      Dir.chdir(dirname) do
-        File.open("#{a.title.downcase.gsub(' ', '_')}.article", 'a+') do |f|
-          f.write("#{a.author}||#{a.likes}||#{a.dislikes}||#{a.body}")
-        end
+    Dir.chdir(@dirname) do
+      articles.each do |a|
+        File.write(file_name(a), article_content(a))
       end
     end
+  end
+
+  def file_name(a)
+    a.title.downcase.gsub(' ', '_') + '.article'
+  end
+
+  def article_content(a)
+    [a.author, a.likes, a.dislikes, a.body].join('||')
   end
 end
