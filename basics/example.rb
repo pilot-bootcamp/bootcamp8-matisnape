@@ -26,4 +26,25 @@ class Article
   def votes
     @likes + @dislikes
   end
+
+  def long_lines
+    lines = @body.lines.to_a
+    lines.select! { |line| line.length > 80 }
+  end
+
+  def length
+    @body.length
+  end
+
+  def truncate(limit)
+    @body.length > limit ? "#{@body[0, limit-3]}" + "..." : @body
+  end
+
+  def contain?(phrase)
+    if phrase.is_a? String
+      @body.include? phrase
+    elsif phrase.is_a? Regexp
+      phrase.match(@body) ? true : false
+    end
+  end
 end
