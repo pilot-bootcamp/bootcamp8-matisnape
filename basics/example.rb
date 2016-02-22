@@ -20,32 +20,27 @@ class Article
   end
 
   def points
-    @likes - @dislikes
+    likes - dislikes
   end
 
   def votes
-    @likes + @dislikes
+    likes + dislikes
   end
 
   def long_lines
-    lines = @body.lines.to_a
-    lines.select! { |line| line.length > 80 }
+    body.lines.select { |line| line.length > 80 }
   end
 
   def length
-    @body.length
+    body.length
   end
 
   def truncate(limit)
-    @body.length > limit ? "#{@body[0, limit-3]}" + "..." : @body
+    body.length > limit ? "#{@body[0...limit-3]}..." : body
   end
 
   def contain?(phrase)
-    if phrase.is_a? String
-      @body.include? phrase
-    elsif phrase.is_a? Regexp
-      phrase.match(@body) ? true : false
-    end
+    !!body.index(phrase)
   end
 end
 
@@ -56,7 +51,7 @@ class ArticlesFileSystem
 
   def save(articles)
     for a in articles do
-      Dir.chdir(@dirname) do
+      Dir.chdir(dirname) do
         File.open("#{a.title.downcase.gsub(' ', '_')}.article", 'a+') do |f|
           f.write("#{a.author}||#{a.likes}||#{a.dislikes}||#{a.body}")
         end
