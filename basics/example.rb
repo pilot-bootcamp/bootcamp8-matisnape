@@ -20,10 +20,10 @@ class Article
   end
 
   def points
-    return @likes - @dislikes
+    @likes - @dislikes
   end
 
   def votes
-    return @likes + @dislikes
+    @likes + @dislikes
   end
 end
