@@ -53,4 +53,14 @@ class ArticlesFileSystem
   def initialize(dirname)
     @dirname = dirname
   end
+
+  def save(articles)
+    for a in articles do
+      Dir.chdir(@dirname) do
+        File.open("#{a.title.downcase.gsub(' ', '_')}.article", 'a+') do |f|
+          f.write("#{a.author}||#{a.likes}||#{a.dislikes}||#{a.body}")
+        end
+      end
+    end
+  end
 end
