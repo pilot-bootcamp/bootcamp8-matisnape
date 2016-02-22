@@ -48,3 +48,9 @@ class Article
     end
   end
 end
+
+class ArticlesFileSystem
+  def initialize(dirname)
+    @dirname = dirname
+  end
+end
