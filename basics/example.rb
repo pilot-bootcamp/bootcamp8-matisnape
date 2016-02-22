@@ -52,16 +52,35 @@ class ArticlesFileSystem
   def save(articles)
     Dir.chdir(@dirname) do
       articles.each do |a|
-        File.write(file_name(a), article_content(a))
+        File.write(create_file_name(a), create_article_content(a))
       end
     end
   end
 
-  def file_name(a)
+  def create_file_name(a)
     a.title.downcase.gsub(' ', '_') + '.article'
   end
 
-  def article_content(a)
+  def create_article_content(a)
     [a.author, a.likes, a.dislikes, a.body].join('||')
+  end
+
+  def load
+    arr = []
+    Dir.chdir(@dirname) do
+      Dir.glob('*.article').each do |file|
+        arr << revert_file_contents(file)
+      end
+    end
+    arr
+  end
+
+  def revert_file_contents(file)
+    author, likes, dislikes, body = File.read(file).split('||')
+    title = file.split('.').first.gsub('_', ' ').capitalize
+    article = Article.new(title, body, author)
+    article.likes = likes.to_i
+    article.dislikes = dislikes.to_i
+    article
   end
 end
