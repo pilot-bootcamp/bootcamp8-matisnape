@@ -24,6 +24,9 @@ class ArticleTest < Minitest::Test
   end
 
   def test_liking
+    @article = Article.new("title", "body")
+    @article.like!
+    assert_equal 1, @article.likes
   end
 
   def test_disliking
