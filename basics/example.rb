@@ -155,6 +155,10 @@ class WebPage
     authors_statistics.max_by{ |author,count| count }[0]
   end
 
+  def search(query)
+    @articles.select { |article| article.contain? query }
+  end
+
   class NoArticlesFound < StandardError
   end
 end
