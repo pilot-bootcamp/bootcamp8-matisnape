@@ -112,11 +112,11 @@ class WebPage
   end
 
   def best_articles
-    @articles.sort_by { |article| article.points }.reverse
+    worst_articles.reverse
   end
 
   def worst_articles
-    @articles.sort_by { |article| article.points }
+    @articles.sort_by(&:points)
   end
 
   def best_article
@@ -130,7 +130,7 @@ class WebPage
   end
 
   def most_controversial_articles
-    @articles.sort_by { |article| article.votes }.reverse
+    @articles.sort_by(&:votes).reverse
   end
 
   def votes
