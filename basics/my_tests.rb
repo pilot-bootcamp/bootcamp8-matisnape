@@ -53,6 +53,8 @@ class ArticleTest < Minitest::Test
   end
 
   def test_length
+    @article = Article.new("title", "body")
+    assert_equal 4, @article.body.length
   end
 
   def test_votes
