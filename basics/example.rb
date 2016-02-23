@@ -119,8 +119,20 @@ class WebPage
     @articles.sort_by { |article| article.points }
   end
 
+  def best_article
+    raise WebPage::NoArticlesFound if best_articles.first.nil?
+    best_articles.first
+  end
+
+  def worst_article
+    raise WebPage::NoArticlesFound if worst_articles.first.nil?
+    worst_articles.first
+  end
+
   def most_controversial_articles
     @articles.sort_by { |article| article.votes }.reverse
   end
 
+  class NoArticlesFound < StandardError
+  end
 end
