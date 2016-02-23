@@ -40,7 +40,7 @@ class Article
   end
 
   def contain?(phrase)
-    !!body.index(phrase)
+    body.index(phrase) ? true : false
   end
 end
 
