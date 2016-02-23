@@ -140,6 +140,15 @@ class WebPage
     end
     votes
   end
+
+  def authors
+    authors = []
+    @articles.each do |a|
+      authors << a.author
+    end
+    authors.uniq
+  end
+
   class NoArticlesFound < StandardError
   end
 end
