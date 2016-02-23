@@ -67,6 +67,10 @@ class ArticleTest < Minitest::Test
   end
 
   def test_contain
+    @article = Article.new("title", "body")
+    assert_equal true, @article.contain?("bo")
+    assert_equal false, @article.contain?("asdsa")
+    assert_equal true, @article.contain?("dy")
   end
 end
 
