@@ -2,7 +2,18 @@ require 'minitest/autorun'
 require './example'
 
 class ArticleTest < Minitest::Test
+
   def test_initialization
+    timebefore = Time.now
+    @article = Article.new("title", "body", "author")
+    timeafter = Time.now
+    assert_equal "title", @article.title
+    assert_equal "body", @article.body
+    assert_equal "author", @article.author
+    assert timebefore <= @article.created_at
+    assert timeafter >= @article.created_at
+    assert_equal 0, @article.likes
+    assert_equal 0, @article.dislikes
   end
 
   def test_initialization_with_anonymous_author
