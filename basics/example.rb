@@ -146,13 +146,13 @@ class WebPage
   end
 
   def authors_statistics
-    @articles.map(&:author).each_with_object(Hash.new(0)) do
-      |author,authors_statistics| authors_statistics[author] += 1
+    @articles.map(&:author).each_with_object(Hash.new(0)) do |author, authors_statistics|
+      authors_statistics[author] += 1
     end
   end
 
   def best_author
-    authors_statistics.max_by{ |author,count| count }[0]
+    authors_statistics.max_by{ |author, count| count }[0]
   end
 
   def search(query)
