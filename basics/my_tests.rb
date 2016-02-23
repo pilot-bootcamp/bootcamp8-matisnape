@@ -36,6 +36,8 @@ class ArticleTest < Minitest::Test
   end
 
   def test_points
+    @article = Article.new("title", "body")
+    assert_equal @article.likes - @article.dislikes, @article.points
   end
 
   def test_long_lines
