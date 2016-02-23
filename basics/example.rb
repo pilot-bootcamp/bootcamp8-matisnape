@@ -87,18 +87,20 @@ end
 
 class WebPage
   attr_reader :articles
+  attr_reader :filesystem
 
   def initialize(dirname = '/')
     @dirname = dirname
+    @filesystem = ArticlesFileSystem.new(@dirname)
     load
   end
 
   def load
-    @articles = ArticlesFileSystem.new(@dirname).load
+    @articles = filesystem.load
   end
 
   def save
-    ArticlesFileSystem.new(@dirname).save(@articles)
+    @articles.save
   end
 
   def new_article(title, body, author)
