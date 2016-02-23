@@ -133,6 +133,13 @@ class WebPage
     @articles.sort_by { |article| article.votes }.reverse
   end
 
+  def votes
+    votes = 0
+    @articles.each do |a|
+      votes += a.votes
+    end
+    votes
+  end
   class NoArticlesFound < StandardError
   end
 end
