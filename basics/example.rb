@@ -40,7 +40,7 @@ class Article
   end
 
   def contain?(phrase)
-    !!body.index(phrase)
+    body.index(phrase) ? true : false
   end
 end
 
@@ -82,5 +82,83 @@ class ArticlesFileSystem
     article.likes = likes.to_i
     article.dislikes = dislikes.to_i
     article
+  end
+end
+
+class WebPage
+  attr_reader :articles
+  attr_reader :filesystem
+
+  def initialize(dirname = '/')
+    @dirname = dirname
+    @filesystem = ArticlesFileSystem.new(@dirname)
+    load
+  end
+
+  def load
+    @articles = filesystem.load
+  end
+
+  def save
+    filesystem.save(@articles)
+  end
+
+  def new_article(title, body, author)
+    @articles << Article.new(title, body, author)
+  end
+
+  def longest_articles
+    @articles.sort_by { |article| article.body.length }.reverse
+  end
+
+  def best_articles
+    worst_articles.reverse
+  end
+
+  def worst_articles
+    @articles.sort_by(&:points)
+  end
+
+  def best_article
+    raise WebPage::NoArticlesFound if best_articles.first.nil?
+    best_articles.first
+  end
+
+  def worst_article
+    raise WebPage::NoArticlesFound if worst_articles.first.nil?
+    worst_articles.first
+  end
+
+  def most_controversial_articles
+    @articles.sort_by(&:votes).reverse
+  end
+
+  def votes
+    votes = 0
+    @articles.each do |a|
+      votes += a.votes
+    end
+    votes
+  end
+
+  def authors
+    @articles.map(&:author).uniq
+  end
+
+  def authors_statistics
+    @articles.map(&:author).each_with_object(Hash.new(0)) do
+      |author,authors_statistics| authors_statistics[author] += 1
+    end
+  end
+
+  def best_author
+    authors_statistics.max_by{ |author,count| count }[0]
+  end
+
+  def search(query)
+    @articles.select { |article| article.contain? query }
+  end
+
+  class NoArticlesFound < StandardError
   end
 end
