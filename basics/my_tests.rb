@@ -38,3 +38,11 @@ class ArticleTest < Minitest::Test
   def test_contain
   end
 end
+
+class ArticlesFileSystemTest < Minitest::Test
+  def test_saving
+  end
+
+  def test_loading
+  end
+end
