@@ -150,6 +150,9 @@ class WebPage
       |author,authors_statistics| authors_statistics[author] += 1
     end
   end
+
+  def best_author
+    authors_statistics.max_by{ |author,count| count }[0]
   end
 
   class NoArticlesFound < StandardError
