@@ -106,4 +106,21 @@ class WebPage
   def new_article(title, body, author)
     @articles << Article.new(title, body, author)
   end
+
+  def longest_articles
+    @articles.sort_by { |article| article.body.length }.reverse
+  end
+
+  def best_articles
+    @articles.sort_by { |article| article.points }.reverse
+  end
+
+  def worst_articles
+    @articles.sort_by { |article| article.points }
+  end
+
+  def most_controversial_articles
+    @articles.sort_by { |article| article.votes }.reverse
+  end
+
 end
