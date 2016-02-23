@@ -146,15 +146,10 @@ class WebPage
   end
 
   def authors_statistics
-    authors_statistics = Hash.new 0
-    authors = []
-    @articles.each do |a|
-      authors << a.author
+    @articles.map(&:author).each_with_object(Hash.new(0)) do
+      |author,authors_statistics| authors_statistics[author] += 1
     end
-    authors.each do |author|
-      authors_statistics[author] +=1
-    end
-    authors_statistics
+  end
   end
 
   class NoArticlesFound < StandardError
