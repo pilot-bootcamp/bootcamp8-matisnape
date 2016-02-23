@@ -48,12 +48,18 @@ class ArticleTest < Minitest::Test
   end
 
   def test_truncate
+    @article = Article.new('title', 'a'*6)
+    assert_equal 'aa...', @article.truncate(5)
   end
 
   def test_truncate_when_limit_is_longer_then_body
+    @article = Article.new('title', 'a'*4)
+    assert_equal 'a'*4, @article.truncate(5)
   end
 
   def test_truncate_when_limit_is_same_as_body_length
+    @article = Article.new('title', 'a'*5)
+    assert_equal 'a'*5, @article.truncate(5)
   end
 
   def test_length
