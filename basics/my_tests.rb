@@ -56,6 +56,8 @@ class ArticleTest < Minitest::Test
   end
 
   def test_votes
+    @article = Article.new("title", "body")
+    assert_equal @article.likes + @article.dislikes, @article.votes
   end
 
   def test_contain
