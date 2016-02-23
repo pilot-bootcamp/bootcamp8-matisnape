@@ -94,5 +94,19 @@ class ArticlesFileSystemTest < Minitest::Test
   end
 
   def test_loading
+    @article = Article.new('Title', 'body', 'author')
+    # note: test will fail if title is beginning with small T
+    # need help with catching that
+    dirname = Dir.mktmpdir
+    @filesystem = ArticlesFileSystem.new(dirname)
+    Dir.chdir(dirname) do
+      File.write(@filesystem.create_file_name(@article), @filesystem.create_article_content(@article))
+      files_list = Dir.glob('*.article').each { |file| arr = []; arr << file; arr }
+      assert_equal @article.title, @filesystem.revert_file_contents(files_list.first).title
+      assert_equal @article.body, @filesystem.revert_file_contents(files_list.first).body
+      assert_equal @article.author, @filesystem.revert_file_contents(files_list.first).author
+      assert_equal @article.likes, @filesystem.revert_file_contents(files_list.first).likes
+      assert_equal @article.dislikes, @filesystem.revert_file_contents(files_list.first).dislikes
+    end
   end
 end
