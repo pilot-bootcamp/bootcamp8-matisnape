@@ -142,11 +142,7 @@ class WebPage
   end
 
   def authors
-    authors = []
-    @articles.each do |a|
-      authors << a.author
-    end
-    authors.uniq
+    @articles.map(&:author).uniq
   end
 
   def authors_statistics
