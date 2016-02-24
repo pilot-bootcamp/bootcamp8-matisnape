@@ -96,14 +96,14 @@ class ArticlesFileSystemTest < Minitest::Test
   end
 
   def test_loading
-    Dir.chdir(@dirname) do
-      File.write(@filesystem.create_file_name(@article), @filesystem.create_article_content(@article))
-    end
-    loaded_article = @filesystem.load.first
-    assert_equal @article.title, loaded_article.title
-    assert_equal @article.body, loaded_article.body
-    assert_equal @article.author.to_s, loaded_article.author
-    assert_equal @article.likes, loaded_article.likes
-    assert_equal @article.dislikes, loaded_article.dislikes
+    File.write(@dirname + '/article_1.article', 'author||1||2||body')
+    File.write(@dirname + '/article2.article', '||0||0||anks')
+    File.write(@dirname + '/foobar', '||0||0||body')
+    loaded_articles = @filesystem.load.sort_by(&:title)
+    assert_equal ['Article 1', 'Article2'], loaded_articles.map(&:title)
+    assert_equal ['author', ''], loaded_articles.map(&:author)
+    assert_equal [1, 0], loaded_articles.map(&:likes)
+    assert_equal [2, 0], loaded_articles.map(&:dislikes)
+    assert_equal ['body', 'anks'], loaded_articles.map(&:body)
   end
 end
