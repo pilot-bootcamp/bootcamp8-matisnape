@@ -78,7 +78,6 @@ class ArticlesFileSystemTest < Minitest::Test
 
   def setup
     @dirname = Dir.mktmpdir
-    @article = Article.new('Title', 'body')
     @filesystem = ArticlesFileSystem.new(@dirname)
   end
 
@@ -88,10 +87,11 @@ class ArticlesFileSystemTest < Minitest::Test
 
   def test_saving
     require 'pathname'
+    @article1 = Article.new('Article1', 'body', 'author')
     path = Pathname.new(@dirname)
-    @filesystem.save([@article])
+    @filesystem.save([@article1])
     assert_equal 1, @filesystem.load.count
-    assert_includes path.children.map(&:basename).map(&:to_s), 'title.article'
+    assert_includes path.children.map(&:basename).map(&:to_s), 'article1.article'
     assert_equal 'body', @filesystem.load.first.body
   end
 
