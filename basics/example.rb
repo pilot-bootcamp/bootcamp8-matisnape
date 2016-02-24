@@ -134,11 +134,7 @@ class WebPage
   end
 
   def votes
-    votes = 0
-    @articles.each do |a|
-      votes += a.votes
-    end
-    votes
+    @articles.empty? ? 0 : @articles.map(&:votes).reduce(:+)
   end
 
   def authors
