@@ -107,3 +107,50 @@ class ArticlesFileSystemTest < Minitest::Test
     assert_equal ['body', 'anks'], loaded_articles.map(&:body)
   end
 end
+
+class WebPageTest < Minitest::Test
+  def test_new_without_anything_to_load
+  end
+
+  def test_new_article
+  end
+
+  def test_longest_articles
+  end
+
+  def test_best_articles
+  end
+
+  def test_best_article
+  end
+
+  def test_best_article_exception_when_no_articles_can_be_found
+  end
+
+  def test_worst_articles
+  end
+
+  def test_worst_article
+  end
+
+  def test_worst_article_exception_when_no_articles_can_be_found
+  end
+
+  def test_most_controversial_articles
+  end
+
+  def test_votes
+  end
+
+  def test_authors
+  end
+
+  def test_authors_statistics
+  end
+
+  def test_best_author
+  end
+
+  def test_search
+  end
+end
