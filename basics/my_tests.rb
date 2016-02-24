@@ -41,7 +41,7 @@ class ArticleTest < Minitest::Test
   end
 
   def test_long_lines
-    @article.body = 'a'*80 + '\n' + 'b'*81 + '\n' + 'c'*15
+    @article.body = 'a'*80 + "\n" + 'b'*81 + "\n" + 'c'*15
     assert_equal 1, @article.long_lines.count
     assert_equal 'b'*81, @article.long_lines.first
   end
