@@ -3,40 +3,41 @@ require './example'
 
 class ArticleTest < Minitest::Test
 
+  def setup
+    @article = Article.new('title', 'body')
+    @article_6 = Article.new('title', 'a'*6)
+  end
+
   def test_initialization
     timebefore = Time.now
-    @article = Article.new('title', 'body', 'author')
+    @article_author = Article.new('title', 'body', 'author')
     timeafter = Time.now
-    assert_equal 'title', @article.title
-    assert_equal 'body', @article.body
-    assert_equal 'author', @article.author
-    assert timebefore <= @article.created_at
-    assert timeafter >= @article.created_at
-    assert_equal 0, @article.likes
-    assert_equal 0, @article.dislikes
+    assert_equal 'title', @article_author.title
+    assert_equal 'body', @article_author.body
+    assert_equal 'author', @article_author.author
+    assert timebefore <= @article_author.created_at
+    assert timeafter >= @article_author.created_at
+    assert_equal 0, @article_author.likes
+    assert_equal 0, @article_author.dislikes
   end
 
   def test_initialization_with_anonymous_author
-    @article = Article.new('title', 'body')
     assert_equal 'title', @article.title
     assert_equal 'body', @article.body
     assert_nil @article.author
   end
 
   def test_liking
-    @article = Article.new('title', 'body')
     @article.like!
     assert_equal 1, @article.likes
   end
 
   def test_disliking
-    @article = Article.new('title', 'body')
     @article.dislike!
     assert_equal 1, @article.dislikes
   end
 
   def test_points
-    @article = Article.new('title', 'body')
     assert_equal @article.likes - @article.dislikes, @article.points
   end
 
@@ -48,32 +49,26 @@ class ArticleTest < Minitest::Test
   end
 
   def test_truncate
-    @article = Article.new('title', 'a'*6)
-    assert_equal 'aa...', @article.truncate(5)
+    assert_equal 'aa...', @article_6.truncate(5)
   end
 
   def test_truncate_when_limit_is_longer_then_body
-    @article = Article.new('title', 'a'*4)
-    assert_equal 'a'*4, @article.truncate(5)
+    assert_equal 'a'*6, @article_6.truncate(7)
   end
 
   def test_truncate_when_limit_is_same_as_body_length
-    @article = Article.new('title', 'a'*5)
-    assert_equal 'a'*5, @article.truncate(5)
+    assert_equal 'a'*6, @article_6.truncate(6)
   end
 
   def test_length
-    @article = Article.new('title', 'body')
     assert_equal 4, @article.length
   end
 
   def test_votes
-    @article = Article.new('title', 'body')
     assert_equal @article.likes + @article.dislikes, @article.votes
   end
 
   def test_contain
-    @article = Article.new('title', 'body')
     assert_equal true, @article.contain?('bo')
     assert_equal false, @article.contain?('asdsa')
     assert_equal true, @article.contain?('dy')
