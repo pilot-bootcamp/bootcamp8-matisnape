@@ -165,6 +165,8 @@ class WebPageTest < Minitest::Test
   end
 
   def test_worst_article
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    assert_equal @article1, @page.worst_articles.first
   end
 
   def test_worst_article_exception_when_no_articles_can_be_found
