@@ -109,6 +109,12 @@ class ArticlesFileSystemTest < Minitest::Test
 end
 
 class WebPageTest < Minitest::Test
+
+  def setup
+    @dirname = Dir.mktmpdir
+    @page = WebPage.new(@dirname)
+  end
+
   def test_new_without_anything_to_load
   end
 
