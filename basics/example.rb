@@ -120,12 +120,12 @@ class WebPage
   end
 
   def best_article
-    raise WebPage::NoArticlesFound if best_articles.first.nil?
+    raise WebPage::NoArticlesFound if @articles.empty?
     best_articles.first
   end
 
   def worst_article
-    raise WebPage::NoArticlesFound if worst_articles.first.nil?
+    raise WebPage::NoArticlesFound if @articles.empty?
     worst_articles.first
   end
 
