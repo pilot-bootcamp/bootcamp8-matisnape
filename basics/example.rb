@@ -77,7 +77,7 @@ class ArticlesFileSystem
 
   def revert_file_contents(file)
     author, likes, dislikes, body = File.read(file).split('||')
-    title = file.split('.').first.gsub('_', ' ').capitalize
+    title = File.basename(file, '.article').gsub('_', ' ').capitalize
     article = Article.new(title, body, author)
     article.likes = likes.to_i
     article.dislikes = dislikes.to_i
