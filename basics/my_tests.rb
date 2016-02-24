@@ -78,7 +78,7 @@ class ArticlesFileSystemTest < Minitest::Test
 
   def setup
     @dirname = Dir.mktmpdir
-    @article = Article.new('Title', 'body', 'author')
+    @article = Article.new('Title', 'body')
     @filesystem = ArticlesFileSystem.new(@dirname)
   end
 
@@ -99,10 +99,11 @@ class ArticlesFileSystemTest < Minitest::Test
     Dir.chdir(@dirname) do
       File.write(@filesystem.create_file_name(@article), @filesystem.create_article_content(@article))
     end
-    assert_equal @article.title, @filesystem.load.first.title
-    assert_equal @article.body, @filesystem.load.first.body
-    assert_equal @article.author, @filesystem.load.first.author
-    assert_equal @article.likes, @filesystem.load.first.likes
-    assert_equal @article.dislikes, @filesystem.load.first.dislikes
+    loaded_article = @filesystem.load.first
+    assert_equal @article.title, loaded_article.title
+    assert_equal @article.body, loaded_article.body
+    assert_equal @article.author.to_s, loaded_article.author
+    assert_equal @article.likes, loaded_article.likes
+    assert_equal @article.dislikes, loaded_article.dislikes
   end
 end
