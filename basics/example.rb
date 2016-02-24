@@ -1,6 +1,6 @@
 class Article
-  attr_reader :title, :body, :author, :created_at
-  attr_accessor :likes, :dislikes
+  attr_reader :title, :author, :created_at
+  attr_accessor :likes, :dislikes, :body
 
   def initialize(title, body, author = nil)
     @title = title
