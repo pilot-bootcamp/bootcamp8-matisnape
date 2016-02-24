@@ -191,6 +191,8 @@ class WebPageTest < Minitest::Test
   end
 
   def test_authors_statistics
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    assert_equal ({ 'author' => 2, 'author3' => 1 }), @page.authors_statistics
   end
 
   def test_best_author
