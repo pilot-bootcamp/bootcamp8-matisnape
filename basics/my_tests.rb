@@ -170,6 +170,7 @@ class WebPageTest < Minitest::Test
   end
 
   def test_worst_article_exception_when_no_articles_can_be_found
+    assert_raises (WebPage::NoArticlesFound) { @page.worst_article }
   end
 
   def test_most_controversial_articles
