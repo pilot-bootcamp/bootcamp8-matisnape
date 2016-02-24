@@ -41,10 +41,9 @@ class ArticleTest < Minitest::Test
   end
 
   def test_long_lines
-    @article_80 = Article.new('title', 'a'*80)
-    assert_empty @article_80.long_lines
-    @article_81 = Article.new('title', 'a'*81)
-    assert_equal 1, @article_81.long_lines.count
+    @article.body = 'a'*80 + '\n' + 'b'*81 + '\n' + 'c'*15
+    assert_equal 1, @article.long_lines.count
+    assert_equal 'b'*81, @article.long_lines.first
   end
 
   def test_truncate
