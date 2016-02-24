@@ -154,6 +154,7 @@ class WebPageTest < Minitest::Test
   end
 
   def test_best_article_exception_when_no_articles_can_be_found
+    assert_raises (WebPage::NoArticlesFound) { @page.best_article }
   end
 
   def test_worst_articles
