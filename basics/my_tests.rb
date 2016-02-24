@@ -113,6 +113,9 @@ class WebPageTest < Minitest::Test
   def setup
     @dirname = Dir.mktmpdir
     @page = WebPage.new(@dirname)
+    @article1 = Article.new('title', 'a'*15)
+    @article2 = Article.new('title', 'a'*10)
+    @article3 = Article.new('title', 'a'*20)
   end
 
   def test_new_without_anything_to_load
@@ -126,6 +129,9 @@ class WebPageTest < Minitest::Test
   end
 
   def test_longest_articles
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    # ^ this is a walkaround if you don't have setter for @articles array
+    assert_equal [@article3, @article1, @article2], @page.longest_articles
   end
 
   def test_best_articles
