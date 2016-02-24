@@ -113,9 +113,16 @@ class WebPageTest < Minitest::Test
   def setup
     @dirname = Dir.mktmpdir
     @page = WebPage.new(@dirname)
-    @article1 = Article.new('title', 'a'*15)
-    @article2 = Article.new('title', 'a'*10)
-    @article3 = Article.new('title', 'a'*20)
+
+    @article1 = Article.new('title1', 'a'*15, 'author')
+    @article1.likes = 1
+    @article1.dislikes = 4
+    @article2 = Article.new('title2', 'a'*10, 'author')
+    @article2.likes = 3
+    @article2.dislikes = 4
+    @article3 = Article.new('title3', 'a'*20, 'author3')
+    @article3.likes = 4
+    @article3.dislikes = 0
   end
 
   def test_new_without_anything_to_load
