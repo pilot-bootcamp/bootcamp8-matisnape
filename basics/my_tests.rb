@@ -181,6 +181,8 @@ class WebPageTest < Minitest::Test
   end
 
   def test_votes
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    assert_equal 16, @page.votes
   end
 
   def test_authors
