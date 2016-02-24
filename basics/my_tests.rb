@@ -116,6 +116,7 @@ class WebPageTest < Minitest::Test
   end
 
   def test_new_without_anything_to_load
+    assert_empty @page.articles
   end
 
   def test_new_article
