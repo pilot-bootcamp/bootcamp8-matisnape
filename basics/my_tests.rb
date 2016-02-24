@@ -201,5 +201,8 @@ class WebPageTest < Minitest::Test
   end
 
   def test_search
+    article4 = Article.new('title4', 'body')
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3, article4])
+    assert_equal [ article4 ], @page.search('bo')
   end
 end
