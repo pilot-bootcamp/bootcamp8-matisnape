@@ -75,6 +75,17 @@ class ArticleTest < Minitest::Test
 end
 
 class ArticlesFileSystemTest < Minitest::Test
+
+  def setup
+    @dirname = Dir.mktmpdir
+    @article = Article.new('Title', 'body', 'author')
+    @filesystem = ArticlesFileSystem.new(@dirname)
+  end
+
+  def teardown
+    FileUtils.rm_rf @dirname
+  end
+
   def test_saving
     require 'pathname'
     @article = Article.new('title', 'body', 'author')
