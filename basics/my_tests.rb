@@ -120,6 +120,9 @@ class WebPageTest < Minitest::Test
   end
 
   def test_new_article
+    size_before = @page.articles.count
+    @page.new_article('title', 'body', 'author')
+    assert_equal size_before + 1, @page.articles.count
   end
 
   def test_longest_articles
