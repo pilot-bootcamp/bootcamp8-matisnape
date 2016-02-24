@@ -4,8 +4,7 @@ require './example'
 class ArticleTest < Minitest::Test
 
   def setup
-    @article = Article.new('title', 'body')
-    @article_6 = Article.new('title', 'a'*6)
+    @article = Article.new('title', 'bodybo')
   end
 
   def test_initialization
@@ -23,7 +22,7 @@ class ArticleTest < Minitest::Test
 
   def test_initialization_with_anonymous_author
     assert_equal 'title', @article.title
-    assert_equal 'body', @article.body
+    assert_equal 'bodybo', @article.body
     assert_nil @article.author
   end
 
@@ -49,19 +48,19 @@ class ArticleTest < Minitest::Test
   end
 
   def test_truncate
-    assert_equal 'aa...', @article_6.truncate(5)
+    assert_equal 'bo...', @article.truncate(5)
   end
 
   def test_truncate_when_limit_is_longer_then_body
-    assert_equal 'a'*6, @article_6.truncate(7)
+    assert_equal 'bodybo', @article.truncate(7)
   end
 
   def test_truncate_when_limit_is_same_as_body_length
-    assert_equal 'a'*6, @article_6.truncate(6)
+    assert_equal 'bodybo', @article.truncate(6)
   end
 
   def test_length
-    assert_equal 4, @article.length
+    assert_equal 6, @article.length
   end
 
   def test_votes
