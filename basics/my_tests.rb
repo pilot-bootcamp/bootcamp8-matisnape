@@ -174,6 +174,10 @@ class WebPageTest < Minitest::Test
   end
 
   def test_most_controversial_articles
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    sorted_articles = @page.most_controversial_articles
+    assert sorted_articles[0].votes >= sorted_articles[1].votes
+    assert sorted_articles[1].votes >= sorted_articles[2].votes
   end
 
   def test_votes
