@@ -142,6 +142,10 @@ class WebPageTest < Minitest::Test
   end
 
   def test_best_articles
+    @page.instance_variable_set(:@articles, [@article1, @article2, @article3])
+    sorted_articles = @page.best_articles
+    assert sorted_articles[0].points >= sorted_articles[1].points
+    assert sorted_articles[1].points >= sorted_articles[2].points
   end
 
   def test_best_article
