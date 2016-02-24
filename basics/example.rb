@@ -28,7 +28,7 @@ class Article
   end
 
   def long_lines
-    body.lines.select { |line| line.length > 80 }
+    body.lines.map(&:strip).select { |line| line.length > 80 }
   end
 
   def length
