@@ -2,7 +2,7 @@
 
 one:
   places: 100
-  kind: "Park & Ride"
+  kind: "outdoor"
   hour_price: 3.5
   day_price: 20.99
   address_id: one
@@ -10,7 +10,7 @@ one:
 
 two:
   places: 50
-  kind: "Hotel parking"
+  kind: "private"
   hour_price: 2.9
   day_price: 12.99
   address_id: two
