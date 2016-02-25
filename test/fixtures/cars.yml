@@ -3,9 +3,9 @@
 one:
   registration_number: PZ12345
   model: Fiat Panda
-  owner_id: one
+  owner: one
 
 two:
   registration_number: WE65432
   model: Ford Escort
-  owner_id: two
+  owner: two

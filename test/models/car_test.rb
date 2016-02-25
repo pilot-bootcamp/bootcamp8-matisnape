@@ -20,7 +20,7 @@ class CarTest < ActiveSupport::TestCase
   end
 
   test "Invalid without owner" do
-    @car.owner_id = ""
+    @car.owner = nil
     assert_not @car.valid?, "can't be blank"
   end
 end
