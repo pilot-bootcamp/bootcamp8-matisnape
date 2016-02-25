@@ -1,12 +1,16 @@
   <%= f.label :places, "Enter number of places available" %>
+<%= form_for @parking do |f| %>
   <%= error %><br /><br />
+
+  <%= f.label :places, "Enter number of places available:" %>
   <%= f.text_field :places %><br />
-  <%= f.label :hour_price, "Enter price per hour" %>
+  <%= f.label :hour_price, "Enter price per hour:" %>
   <%= f.text_field :hour_price %><br />
-  <%= f.label :day_price, "Enter price per day" %>
+  <%= f.label :day_price, "Enter price per day:" %>
   <%= f.text_field :day_price %><br />
+  <%= f.label :day_price, "Enter kind:" %>
   <select name="Kind">
     <%= options_for_select %w(outdoor indoor private street), @parking.kind %>
   </select><br />
   <%= f.submit "Submit" %><br />
-<% end %>
+<% end %><br />
