@@ -1,25 +1,31 @@
 require 'test_helper'
 
 class AddressTest < ActiveSupport::TestCase
-  def test_validate_presence_city
-    assert Address.create(street: 'Poznanska', zip_code: '12-123').invalid?, "can't be blank"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12-123').valid?
+  setup do
+    @address = addresses(:one)
   end
 
-  def test_validate_presence_street
-    assert Address.create(city: 'Poznan', zip_code: '12-123').invalid?, "can't be blank"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12-123').valid?
+  test "Valid with all data" do
+    assert @address.valid?
   end
 
-  def test_validate_presence_zip_code
-    assert Address.create(city: 'Poznan', street: 'Poznanska').invalid?, "can't be blank"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12-123').valid?
+  test "Invalid if there's no city" do
+    @address.city = ""
+    assert @address.invalid?, "can't be blank"
   end
 
-  def test_validate_format_zip_code
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12123').invalid?, "Zip code format should be XX-XXX"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '1-1234').invalid?, "Zip code format should be XX-XXX"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12-123-').invalid?, "Zip code format should be XX-XXX"
-    assert Address.create(city: 'Poznan', street: 'Poznanska', zip_code: '12-123').valid?
+  test "Invalid if there's no street" do
+    @address.street = ""
+    assert @address.invalid?, "can't be blank"
+  end
+
+  test "Invalid if there's no zip code" do
+    @address.zip_code = ""
+    assert @address.invalid?, "can't be blank"
+  end
+
+  test "Invalid if the zip code format is wrong" do
+    @address.zip_code = "1234-0"
+    assert @address.invalid?, "Zip code format should be XX-XXX"
   end
 end
