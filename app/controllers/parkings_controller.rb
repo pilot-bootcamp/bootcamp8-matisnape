@@ -1,7 +1,7 @@
 class ParkingsController < ApplicationController
 
   def index
-    @parkings = Parking.all
+    @parkings = Parking.all.includes(:address)
   end
 
   def show
