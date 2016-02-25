@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  places: 100
+  kind: "Park & Ride"
+  hour_price: 3.5
+  day_price: 20.99
+  address_id: one
+  owner_id: one
+
+two:
+  places: 50
+  kind: "Hotel parking"
+  hour_price: 2.9
+  day_price: 12.99
+  address_id: two
+  owner_id: two
