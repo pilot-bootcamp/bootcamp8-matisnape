@@ -14,11 +14,11 @@ class ParkingsController < ApplicationController
 
   def create
     @parking = Parking.new(parking_params)
-    unless @parking.save
+    if @parking.save
+      redirect_to root_path
+    else
       redirect_to new_parking_path,
         error: "Parking wasn't saved, because: #{@parking.errors.full_messages}"
-    else
-      redirect_to root_path
     end
   end
 
