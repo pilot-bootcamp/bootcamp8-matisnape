@@ -9,9 +9,9 @@
   <%= f.label :day_price, "Enter price per day:" %>
   <%= f.text_field :day_price %><br />
   <%= f.label :day_price, "Enter kind:" %>
-  <select name="Kind">
+  <%= f.select :kind do %>
     <%= options_for_select %w(outdoor indoor private street), @parking.kind %>
-  </select><br />
+  <% end %><br />
   <%= f.submit "Submit" %><br />
 <% end %><br />
 
