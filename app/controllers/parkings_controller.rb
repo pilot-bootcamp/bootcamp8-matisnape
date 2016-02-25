@@ -13,8 +13,13 @@ class ParkingsController < ApplicationController
   end
 
   def create
-    Parking.create(parking_params)
-    redirect_to root_path
+    @parking = Parking.new(parking_params)
+    unless @parking.save
+      redirect_to new_parking_path,
+        error: "Parking wasn't saved, because: #{@parking.errors.full_messages}"
+    else
+      redirect_to root_path
+    end
   end
 
   private
