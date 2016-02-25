@@ -12,6 +12,11 @@ class ParkingsController < ApplicationController
     @parking = Parking.new
   end
 
+  def create
+    Parking.create(parking_params)
+    redirect_to root_path
+  end
+
   private
   def parking_params
     params.require(:parking).permit(:places, :hour_price, :day_price)
