@@ -3,9 +3,8 @@ class Parking < ActiveRecord::Base
   has_many :place_rents
   belongs_to :owner, class_name: "Person"
 
-  validates :places, :hour_price, :day_price, :owner, presence: true
+  validates :address, :places, :hour_price, :day_price, :owner, presence: true
   validates :kind, inclusion: { in: %w(outdoor indoor private street),
     message: "%{value} is not a valid kind" }
-  validates :hour_price, :day_price, format: { with: /\d/,
-    message: "Only allows numbers" }
+  validates :hour_price, :day_price, numericality: true
 end
