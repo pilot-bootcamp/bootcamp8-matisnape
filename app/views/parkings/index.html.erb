@@ -1,0 +1,25 @@
+<h1>Parkings</h1>
+
+<table>
+  <tr>
+    <th>City</th>
+    <th>Places</th>
+    <th>Hour price</th>
+    <th>Day price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parkings.each do |parking| %>
+  <tr>
+    <td><%= parking.address.try(:city) %></td>
+    <td><%= parking.places %></td>
+    <td><%= parking.hour_price %></td>
+    <td><%= parking.day_price %></td>
+    <td><%= link_to "Show", parking %></td>
+    <td><%= link_to "Edit", edit_parking_path(parking) %></td>
+    <td><%= link_to "Remove", parking, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>
