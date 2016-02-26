@@ -41,11 +41,10 @@ class CarsController < ApplicationController
   def destroy
     @car = current_person.cars.find params[:id]
     if @car.destroy
-      redirect_to cars_path
     else
       flash[:error] = "Cannot delete this car"
-      redirect_to cars_path
     end
+    redirect_to cars_path
   end
 
   def car_params
