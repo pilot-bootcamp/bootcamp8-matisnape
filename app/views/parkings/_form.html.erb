@@ -4,10 +4,6 @@
     Enter street: <%= address_fields.text_field :street %><br />
     Enter zipcode: <%= address_fields.text_field :zip_code %><br />
   <% end %>
-<!--   <%= f.fields_for(:owner) do |owner_fields| %>
-    Enter owner first name: <%= owner_fields.text_field :first_name %><br />
-    Enter owner last name: <%= owner_fields.text_field :last_name %><br />
-  <% end %> -->
 
   <%= f.label :places, "Enter number of places available:" %>
   <%= f.text_field :places %><br />
