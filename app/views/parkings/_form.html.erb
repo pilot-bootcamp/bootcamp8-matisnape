@@ -1,3 +1,6 @@
+<%= render 'shared/flash_errors' %>
+<%= render 'shared/error_messages', object: @parking %>
+
 <%= form_for @parking do |f| %>
   <%= f.fields_for :address_attributes, @parking.address do |address_fields| %>
     Enter city: <%= address_fields.text_field :city %><br />
