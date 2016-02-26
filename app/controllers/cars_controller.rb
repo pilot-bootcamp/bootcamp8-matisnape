@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   def index
-    @cars = Car.all.includes(:owner)
+    @cars = current_person.cars
   end
 
   def show
