@@ -1,2 +1,23 @@
-<h1>Cars#show</h1>
-<p>Find me in app/views/cars/show.html.erb</p>
+<h1>Car</h1>
+
+<%= render 'shared/success_messages' %>
+
+<table>
+  <tr>
+    <th>Registration number</th>
+    <th>Model</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td><%= @car.registration_number %></td>
+    <td><%= @car.model %></td>
+    <td><%= link_to "Show", @car %></td>
+    <td><%= link_to "Edit", edit_car_path(@car) %></td>
+    <td><%= link_to "Remove", @car, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+</table><br />
+
+<%= link_to "Go back to all", cars_path %>
