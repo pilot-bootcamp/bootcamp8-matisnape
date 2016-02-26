@@ -1,2 +1,5 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
+<h1>Add new car</h1>
+<%= render 'shared/error_messages', object: @car %>
+<%= render partial: "form" %>
+
+<%= link_to "Go back", cars_path %>
