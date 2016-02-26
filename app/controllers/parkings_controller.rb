@@ -17,8 +17,7 @@ class ParkingsController < ApplicationController
     if @parking.save
       redirect_to root_path
     else
-      redirect_to new_parking_path,
-        error: "Parking wasn't saved, because: #{@parking.errors.full_messages}"
+      render new_parking_path
     end
   end
 
