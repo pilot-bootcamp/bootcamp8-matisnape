@@ -15,6 +15,7 @@ class ParkingsController < ApplicationController
   def create
     @parking = Parking.new(parking_params)
     if @parking.save
+      flash[:success] = "Parking has been saved correctly"
       redirect_to root_path
     else
       render new_parking_path
@@ -29,6 +30,7 @@ class ParkingsController < ApplicationController
     @parking = Parking.find params[:id]
 
     if @parking.update(parking_params)
+      flash[:success] = "Parking has been saved correctly"
       redirect_to @parking
     else
       render 'edit'
