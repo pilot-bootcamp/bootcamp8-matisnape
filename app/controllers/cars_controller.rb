@@ -44,5 +44,7 @@ class CarsController < ApplicationController
     @car = Car.find params[:id]
     @car.destroy
     redirect_to cars_path
+  def car_params
+    params.require(:car).permit(:registration_number, :model, owner_attributes: [ :first_name, :last_name ])
   end
 end
