@@ -41,6 +41,7 @@ class CarsController < ApplicationController
   def destroy
     @car = current_person.cars.find params[:id]
     if @car.destroy
+      flash[:success] = "Car deleted successfully"
     else
       flash[:error] = "Cannot delete this car"
     end

@@ -42,6 +42,7 @@ class ParkingsController < ApplicationController
   def destroy
     @parking = Parking.find params[:id]
     if @parking.destroy
+      flash[:success] = "Parking deleted successfully"
     else
       flash[:error] = "Cannot delete parking"
     end
