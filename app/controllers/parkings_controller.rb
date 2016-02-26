@@ -18,6 +18,7 @@ class ParkingsController < ApplicationController
       flash[:success] = "Parking has been saved correctly"
       redirect_to root_path
     else
+      flash.now[:error] = "Cannot create parking because of reasons."
       render new_parking_path
     end
   end
