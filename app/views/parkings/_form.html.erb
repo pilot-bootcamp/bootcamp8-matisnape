@@ -1,15 +1,13 @@
 <%= form_for @parking do |f| %>
-  <%= render 'shared/error_messages' %>
-
   <%= f.fields_for :address_attributes, @parking.address do |address_fields| %>
     Enter city: <%= address_fields.text_field :city %><br />
     Enter street: <%= address_fields.text_field :street %><br />
     Enter zipcode: <%= address_fields.text_field :zip_code %><br />
   <% end %>
-  <%= f.fields_for(:owner) do |owner_fields| %>
+<!--   <%= f.fields_for(:owner) do |owner_fields| %>
     Enter owner first name: <%= owner_fields.text_field :first_name %><br />
     Enter owner last name: <%= owner_fields.text_field :last_name %><br />
-  <% end %>
+  <% end %> -->
 
   <%= f.label :places, "Enter number of places available:" %>
   <%= f.text_field :places %><br />
