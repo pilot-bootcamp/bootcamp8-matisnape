@@ -34,6 +34,7 @@ class ParkingsController < ApplicationController
       flash[:success] = "Parking has been saved correctly"
       redirect_to @parking
     else
+      flash.now[:error] = "Cannot update parking because of reasons."
       render 'edit'
     end
   end
