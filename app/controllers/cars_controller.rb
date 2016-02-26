@@ -38,12 +38,15 @@ class CarsController < ApplicationController
     end
   end
 
+  def destroy
+    @car = current_person.cars.find params[:id]
+    if @car.destroy
+      redirect_to cars_path
+    else
+      redirect_to cars_path
+    end
   end
 
-  def delete
-    @car = Car.find params[:id]
-    @car.destroy
-    redirect_to cars_path
   def car_params
     params.require(:car).permit(:registration_number, :model, owner_attributes: [ :first_name, :last_name ])
   end
