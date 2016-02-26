@@ -1,6 +1,6 @@
 <% if @parking.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@parking.errors.count, "error") %> prohibited this parking from being saved:</h2>
+    <h2><%= pluralize(@parking.errors.count, "error") %> prohibited this parking from being changed:</h2>
 
     <ul>
     <% @parking.errors.full_messages.each do |msg| %>
@@ -9,3 +9,5 @@
     </ul>
   </div>
 <% end %><br />
+
+

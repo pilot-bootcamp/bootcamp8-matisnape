@@ -39,9 +39,12 @@ class ParkingsController < ApplicationController
 
   def destroy
     @parking = Parking.find params[:id]
-    @parking.destroy
-
-    redirect_to root_path
+    if @parking.destroy
+      redirect_to root_path
+    else
+      flash[:error] = "Cannot delete parking"
+      redirect_to root_path
+    end
   end
 
   private
