@@ -23,7 +23,21 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = Car.find params[:id]
+    @car = current_person.cars.find params[:id]
+  end
+
+  def update
+    @car = current_person.cars.find params[:id]
+
+    if @car.update(car_params)
+      flash[:success] = "Car has been saved correctly"
+      redirect_to @car
+    else
+      flash.now[:error] = "Cannot update car because of reasons."
+      render 'edit'
+    end
+  end
+
   end
 
   def delete
