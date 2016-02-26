@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    @car = Car.find params[:id]
+    @car = current_person.cars.find params[:id]
   end
 
   def new
