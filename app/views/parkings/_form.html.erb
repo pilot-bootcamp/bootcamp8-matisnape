@@ -1,7 +1,7 @@
 <%= form_for @parking do |f| %>
   <%= render 'shared/error_messages' %>
 
-  <%= f.fields_for(:address) do |address_fields| %>
+  <%= f.fields_for :address_attributes, @parking.address do |address_fields| %>
     Enter city: <%= address_fields.text_field :city %><br />
     Enter street: <%= address_fields.text_field :street %><br />
     Enter zipcode: <%= address_fields.text_field :zip_code %><br />
