@@ -1,0 +1,20 @@
+<h1>Place rents</h1>
+
+<table>
+  <tr>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Parking</th>
+    <th>Car</th>
+  </tr>
+
+<% @place_rent.each do |place_rent| %>
+  <tr>
+    <td><%= place_rent.starts_at %></td>
+    <td><%= place_rent.ends_at %></td>
+    <td><%= link_to "#{place_rent.parking.address.zip_code}  #{place_rent.parking.address.city} #{place_rent.parking.address.street}", parking_path(place_rent.parking) %></td>
+    <td><%= link_to "#{place_rent.car.model} #{place_rent.car.registration_number}", car_path(place_rent.car) %></td>
+    <td><%= link_to "Show", place_rent %></td>
+  </tr>
+<% end %>
+</table><br />
