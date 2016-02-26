@@ -1,10 +1,4 @@
 <%= form_for @car do |f| %>
-
-  <%= f.fields_for :owner_attributes, @car.owner do |owner_fields| %>
-    Enter first name: <%= owner_fields.text_field :first_name %><br />
-    Enter last name: <%= owner_fields.text_field :last_name %><br />
-  <% end %>
-
   <%= f.label :registration_number, "Enter registration number:" %>
   <%= f.text_field :registration_number %><br />
   <%= f.label :model, "Enter model:" %>
