@@ -43,6 +43,7 @@ class CarsController < ApplicationController
     if @car.destroy
       redirect_to cars_path
     else
+      flash[:error] = "Cannot delete this car"
       redirect_to cars_path
     end
   end
