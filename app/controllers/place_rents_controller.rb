@@ -1,6 +1,6 @@
 class PlaceRentsController < ApplicationController
   def index
-    @place_rent = current_person.place_rents
+    @place_rents = current_person.place_rents
   end
 
   def show
