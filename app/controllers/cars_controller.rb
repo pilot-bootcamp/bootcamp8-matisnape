@@ -18,7 +18,7 @@ class CarsController < ApplicationController
       redirect_to cars_path
     else
       flash.now[:error] = "Cannot create car because of reasons."
-      render new_car_path
+      render 'new'
     end
   end
 
