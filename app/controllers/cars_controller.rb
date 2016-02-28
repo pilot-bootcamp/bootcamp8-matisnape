@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    @car = current_person.cars.find params[:id]
+    @car = current_person.cars.find(params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = current_person.cars.find params[:id]
+    @car = current_person.cars.find(params[:id])
   end
 
   def update
-    @car = current_person.cars.find params[:id]
+    @car = current_person.cars.find(params[:id])
 
     if @car.update(car_params)
       flash[:success] = "Car has been saved correctly"
@@ -39,7 +39,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = current_person.cars.find params[:id]
+    @car = current_person.cars.find(params[:id])
     if @car.destroy
       flash[:success] = "Car deleted successfully"
     else

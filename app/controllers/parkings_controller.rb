@@ -5,7 +5,7 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find params[:id]
+    @parking = Parking.find(params[:id])
   end
 
   def new
@@ -24,11 +24,11 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking = Parking.find params[:id]
+    @parking = Parking.find(params[:id])
   end
 
   def update
-    @parking = Parking.find params[:id]
+    @parking = Parking.find(params[:id])
 
     if @parking.update(parking_params)
       flash[:success] = "Parking has been saved correctly"
@@ -40,7 +40,7 @@ class ParkingsController < ApplicationController
   end
 
   def destroy
-    @parking = Parking.find params[:id]
+    @parking = Parking.find(params[:id])
     if @parking.destroy
       flash[:success] = "Parking deleted successfully"
     else
