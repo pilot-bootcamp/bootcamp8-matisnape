@@ -19,7 +19,7 @@ class ParkingsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:error] = "Cannot create parking because of reasons."
-      render new_parking_path
+      render 'new'
     end
   end
 
