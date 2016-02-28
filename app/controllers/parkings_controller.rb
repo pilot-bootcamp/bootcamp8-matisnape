@@ -5,7 +5,7 @@ class ParkingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find(params[:id])
+    parking
   end
 
   def new
@@ -24,13 +24,11 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking = Parking.find(params[:id])
+    parking
   end
 
   def update
-    @parking = Parking.find(params[:id])
-
-    if @parking.update(parking_params)
+    if parking.update(parking_params)
       flash[:success] = "Parking has been saved correctly"
       redirect_to @parking
     else
@@ -40,8 +38,7 @@ class ParkingsController < ApplicationController
   end
 
   def destroy
-    @parking = Parking.find(params[:id])
-    if @parking.destroy
+    if parking.destroy
       flash[:success] = "Parking deleted successfully"
     else
       flash[:error] = "Cannot delete parking"
@@ -52,5 +49,9 @@ class ParkingsController < ApplicationController
   private
   def parking_params
     params.require(:parking).permit(:places, :hour_price, :day_price, :kind, address_attributes: [ :city, :street, :zip_code ])
+  end
+
+  def parking
+    @parking = Parking.find(params[:id])
   end
 end
