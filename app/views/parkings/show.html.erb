@@ -3,23 +3,26 @@
 <%= render 'shared/success_messages' %>
 
 <table>
-  <tr>
-    <th>City</th>
-    <th>Places</th>
-    <th>Hour price</th>
-    <th>Day price</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <tr>
-    <td><%= @parking.address.city %></td>
-    <td><%= @parking.places %></td>
-    <td><%= @parking.hour_price %></td>
-    <td><%= @parking.day_price %></td>
-    <td><%= link_to "Edit", edit_parking_path(@parking) %></td>
-    <td><%= link_to "Remove", @parking, method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Places</th>
+      <th>Hour price</th>
+      <th>Day price</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @parking.address.city %></td>
+      <td><%= @parking.places %></td>
+      <td><%= @parking.hour_price %></td>
+      <td><%= @parking.day_price %></td>
+      <td><%= link_to "Edit", edit_parking_path(@parking) %></td>
+      <td><%= link_to "Remove", @parking, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  </tbody>
 </table>
 <br />
 
