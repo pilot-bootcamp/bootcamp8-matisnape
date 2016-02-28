@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    @car = current_person.cars.find(params[:id])
+    car
   end
 
   def new
@@ -13,7 +13,7 @@ class CarsController < ApplicationController
 
   def create
     @car = current_person.cars.build(car_params)
-    if @car.save
+    if car.save
       flash[:success] = "Car has been saved correctly"
       redirect_to cars_path
     else
@@ -23,13 +23,11 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = current_person.cars.find(params[:id])
+    car
   end
 
   def update
-    @car = current_person.cars.find(params[:id])
-
-    if @car.update(car_params)
+    if car.update(car_params)
       flash[:success] = "Car has been saved correctly"
       redirect_to @car
     else
@@ -39,8 +37,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = current_person.cars.find(params[:id])
-    if @car.destroy
+    if car.destroy
       flash[:success] = "Car deleted successfully"
     else
       flash[:error] = "Cannot delete this car"
@@ -50,5 +47,10 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:registration_number, :model)
+  end
+
+  private
+  def car
+    @car ||= current_person.cars.find(params[:id])
   end
 end
