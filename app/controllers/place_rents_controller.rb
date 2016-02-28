@@ -1,10 +1,10 @@
 class PlaceRentsController < ApplicationController
   def index
-    @place_rents = current_person.place_rents
+    @place_rents = current_person.place_rents.includes({ parking: [:address] }, :car)
   end
 
   def show
-    @place_rent = current_person.place_rents.find(params[:id])
+    @place_rent = current_person.place_rents.includes({ parking: [:address] }, :car).find(params[:id])
   end
 
   def new
