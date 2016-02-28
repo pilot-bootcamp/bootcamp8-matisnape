@@ -52,6 +52,6 @@ class ParkingsController < ApplicationController
   end
 
   def parking
-    @parking = Parking.find(params[:id])
+    @parking = Parking.includes(:address).find(params[:id])
   end
 end
