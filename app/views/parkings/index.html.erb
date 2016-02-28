@@ -4,27 +4,33 @@
 <%= render 'shared/flash_errors' %>
 
 <table>
-  <tr>
-    <th>City</th>
-    <th>Places</th>
-    <th>Hour price</th>
-    <th>Day price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Places</th>
+      <th>Hour price</th>
+      <th>Day price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<% @parkings.each do |parking| %>
-  <tr>
-    <td><%= parking.address.try(:city) %></td>
-    <td><%= parking.places %></td>
-    <td><%= parking.hour_price %></td>
-    <td><%= parking.day_price %></td>
-    <td><%= link_to "Show", parking %></td>
-    <td><%= link_to "Edit", edit_parking_path(parking) %></td>
-    <td><%= link_to "Remove", parking, method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-<% end %>
+  <tbody>
+    <% @parkings.each do |parking| %>
+    <tr>
+      <td><%= parking.address.try(:city) %></td>
+      <td><%= parking.places %></td>
+      <td><%= parking.hour_price %></td>
+      <td><%= parking.day_price %></td>
+      <td><%= link_to "Rent a place", new_place_rent_path %></td>
+      <td><%= link_to "Show", parking %></td>
+      <td><%= link_to "Edit", edit_parking_path(parking) %></td>
+      <td><%= link_to "Remove", parking, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table><br />
 
 <%= link_to "Add new parking", new_parking_path %>
