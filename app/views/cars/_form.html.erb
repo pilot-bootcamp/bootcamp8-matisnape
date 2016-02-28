@@ -1,3 +1,6 @@
+<%= render 'shared/flash_errors' %>
+<%= render 'shared/error_messages', object: @car %>
+
 <%= form_for @car do |f| %>
   <%= f.label :registration_number, "Enter registration number:" %>
   <%= f.text_field :registration_number %><br />
