@@ -45,11 +45,12 @@ class CarsController < ApplicationController
     redirect_to cars_path
   end
 
+  private
+
   def car_params
     params.require(:car).permit(:registration_number, :model)
   end
 
-  private
   def car
     @car ||= current_person.cars.find(params[:id])
   end

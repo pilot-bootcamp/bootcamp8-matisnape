@@ -23,6 +23,7 @@ class PlaceRentsController < ApplicationController
   end
 
   private
+
   def place_rent_params
     params.require(:place_rent).permit(:starts_at, :ends_at)
   end
