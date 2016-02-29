@@ -8,7 +8,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def new
-    @place_rent = current_person.place_rents.build
+    @place_rent = current_person.place_rents.build(parking_id:params[:parking_id])
   end
 
   def create
