@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render 'shared/flash_messages' %>
 <%= yield %>
 <br /><br />
 <%= link_to "Go to parkings list", parkings_path %><br />
