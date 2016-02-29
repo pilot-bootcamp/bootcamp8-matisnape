@@ -19,7 +19,7 @@ class PlaceRentsController < ApplicationController
       redirect_to place_rents_path
     else
       flash.now[:error] = "Cannot create place_rent because of reasons."
-      render new_parking_place_rent_path
+      render 'new'
     end
   end
 
