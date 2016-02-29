@@ -1,7 +1,7 @@
 class ParkingsController < ApplicationController
 
   def index
-    @parkings = Parking.all.includes(:address)
+    @parkings = current_person.parkings.includes(:address)
   end
 
   def show
@@ -9,11 +9,11 @@ class ParkingsController < ApplicationController
   end
 
   def new
-    @parking = Parking.new
+    @parking = current_person.parkings.build
   end
 
   def create
-    @parking = Parking.new(parking_params)
+    @parking = current_person.parkings.build(parking_params)
     if @parking.save
       flash[:success] = "Parking has been saved correctly"
       redirect_to root_path
@@ -53,6 +53,6 @@ class ParkingsController < ApplicationController
   end
 
   def parking
-    @parking = Parking.includes(:address).find(params[:id])
+    @parking = current_person.parkings.includes(:address).find(params[:id])
   end
 end
