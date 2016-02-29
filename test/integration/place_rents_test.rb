@@ -1,12 +1,10 @@
 require 'test_helper'
 
 class PlaceRentsTest < ActionDispatch::IntegrationTest
-  setup do
-    visit "/parkings"
-    click_link "Rent a place", match: :first
-  end
 
   test "user adds a new place rent successfully with valid data" do
+    visit "/parkings"
+    click_link "Rent a place", match: :first
     select "Fiat Panda PZ12345", from: "Select car:"
     select_date_and_time(DateTime.new(2011,11,19,8,37), from: :place_rent_starts_at)
     select_date_and_time(DateTime.new(2012,11,19,8,37), from: :place_rent_ends_at)
@@ -17,6 +15,22 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
   end
 
   # test missing for checking place rents if current user has no cars
+
+  test "user views a list of place rents" do
+    visit "/place_rents"
+    assert has_content? "2016-01-24 08:15:34 UTC 2016-01-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
+      Fiat Panda PZ12345"
+    assert has_content? "2016-02-24 10:15:34 UTC 2016-02-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
+      Ford Escort WE65432"
+  end
+
+  test "user can view a single place rent" do
+    visit "/place_rents"
+    click_link "Show", match: :first
+    binding.pry
+    assert has_content? "Fiat Panda PZ12345"
+    assert_not has_content? "Ford Escort WE65432"
+  end
 
   private
 
