@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    Person.new(first_name: "Janusz", last_name: "Iksiński" )
     @current_person ||= Person.first
   end
 
