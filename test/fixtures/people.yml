@@ -4,6 +4,6 @@ one:
   first_name: Katarzyna
   last_name: Iksińska
 
-two:
-  first_name: Janusz
-  last_name: Ygrekowski
+# two:
+#   first_name: Janusz
+#   last_name: Ygrekowski
