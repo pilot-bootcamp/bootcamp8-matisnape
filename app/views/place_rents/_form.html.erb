@@ -1,0 +1,13 @@
+<%= form_for @place_rent do |f| %>
+  <%= f.label :car_id, "Select car:" %>
+  <%= f.select :car_id do %>
+    <%= options_for_select current_person.cars.map { |car| [car.display_car, car.id] }, @place_rent.car %>
+  <% end %><br />
+
+  <%= f.label :starts_at, "Enter start date:" %>
+  <%= f.datetime_select :starts_at %> <br />
+  <%= f.label :ends_at, "Enter end date:" %>
+  <%= f.datetime_select :ends_at %><br />
+  <%= f.hidden_field :parking_id %>
+  <%= f.submit "Submit" %><br />
+<% end %><br />
