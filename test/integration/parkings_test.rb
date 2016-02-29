@@ -70,8 +70,15 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test "user removes a parking" do
+    Capybara.current_driver = :selenium
+
+    visit '/parkings'
     click_link "Remove", match: :first
+    page.accept_confirm
     assert_not has_content? "Poznań 100 3.5 20.99"
     assert has_content? "Parking deleted successfully"
+
+    Capybara.use_default_driver
+    DatabaseCleaner.clean_with :truncation
   end
 end
