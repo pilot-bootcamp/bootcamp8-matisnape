@@ -34,4 +34,22 @@ class CarsTest < ActionDispatch::IntegrationTest
     click_on "Submit"
     assert has_content? "Cannot create car because of reasons."
   end
+
+  test "user edits a car successfully with valid data" do
+    click_link "Edit", match: :first
+    fill_in "Enter registration number:", with: "LOL12345"
+    fill_in "Enter model:", with: "Volkswagen Polo"
+    click_on "Submit"
+    assert has_content? "Car has been saved correctly"
+    assert_not has_content? "WAW12345 Syrena Bosto"
+    assert has_content? "LOL12345 Volkswagen Polo"
+  end
+
+  test "user fails to edit a car because of invalid data" do
+    click_link "Edit", match: :first
+    fill_in "Enter registration number:", with: ""
+    fill_in "Enter model:", with: ""
+    click_on "Submit"
+    assert has_content? "Cannot update car because of reasons."
+  end
 end
