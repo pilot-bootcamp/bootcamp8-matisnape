@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160225134541) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
     t.string   "city"
     t.string   "street"
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160225134541) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "cars", ["owner_id"], name: "index_cars_on_owner_id"
+  add_index "cars", ["owner_id"], name: "index_cars_on_owner_id", using: :btree
 
   create_table "parkings", force: :cascade do |t|
     t.integer "places"
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20160225134541) do
     t.integer "address_id"
   end
 
-  add_index "parkings", ["address_id"], name: "index_parkings_on_address_id"
-  add_index "parkings", ["owner_id"], name: "index_parkings_on_owner_id"
+  add_index "parkings", ["address_id"], name: "index_parkings_on_address_id", using: :btree
+  add_index "parkings", ["owner_id"], name: "index_parkings_on_owner_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160225134541) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "place_rents", ["car_id"], name: "index_place_rents_on_car_id"
-  add_index "place_rents", ["parking_id"], name: "index_place_rents_on_parking_id"
+  add_index "place_rents", ["car_id"], name: "index_place_rents_on_car_id", using: :btree
+  add_index "place_rents", ["parking_id"], name: "index_place_rents_on_parking_id", using: :btree
 
 end
