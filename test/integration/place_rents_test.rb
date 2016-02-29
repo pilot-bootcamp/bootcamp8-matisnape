@@ -1,0 +1,31 @@
+require 'test_helper'
+
+class PlaceRentsTest < ActionDispatch::IntegrationTest
+  setup do
+    visit "/parkings"
+    click_link "Rent a place", match: :first
+  end
+
+  test "user adds a new place rent successfully with valid data" do
+    select "Fiat Panda PZ12345", from: "Select car:"
+    select_date_and_time(DateTime.new(2011,11,19,8,37), from: :place_rent_starts_at)
+    select_date_and_time(DateTime.new(2012,11,19,8,37), from: :place_rent_ends_at)
+    click_on "Submit"
+    assert has_content? "Place rent has been saved correctly"
+    assert has_content? "2011-11-19 08:37:00 UTC 2012-11-19 08:37:00 UTC 61-248 Poznań, Św. Marcin
+      Fiat Panda PZ12345"
+  end
+
+  # test missing for checking place rents if current user has no cars
+
+  private
+
+  def select_date_and_time(date, options = {})
+    field = options[:from]
+    select date.strftime('%Y'), :from => "#{field}_1i" #year
+    select date.strftime('%B'), :from => "#{field}_2i" #month
+    select date.strftime('%d'), :from => "#{field}_3i" #day
+    select date.strftime('%H'), :from => "#{field}_4i" #hour
+    select date.strftime('%M'), :from => "#{field}_5i" #minute
+  end
+end
