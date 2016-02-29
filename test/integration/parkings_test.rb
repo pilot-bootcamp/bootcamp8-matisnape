@@ -40,5 +40,33 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     click_on "Submit"
     assert has_content? "Cannot create parking because of reasons."
   end
+
+  test "user edits a parking successfully" do
+    click_link "Edit", match: :first
+    fill_in "Enter city:", with: "Lublin"
+    fill_in "Enter street", with: "Poznańska"
+    fill_in "Enter zipcode", with: "62-024"
+    fill_in "Enter number of places available:", with: "123"
+    fill_in "Enter price per hour:", with: 56
+    fill_in "Enter price per day:", with: 78
+    select "private", from: "Enter kind:"
+    click_on "Submit"
+    assert has_content? "Parking has been saved correctly"
+    assert has_content? "Lublin 123 56.0 78.0"
+    assert_not has_content? "Poznań 100 3.5 20.99"
+  end
+
+  test "user fails to edit a parking because of invalid data" do
+    click_link "Edit", match: :first
+    fill_in "Enter city:", with: ""
+    fill_in "Enter street", with: ""
+    fill_in "Enter zipcode", with: ""
+    fill_in "Enter number of places available:", with: ""
+    fill_in "Enter price per hour:", with: nil
+    fill_in "Enter price per day:", with: nil
+    select "private", from: "Enter kind:"
+    click_on "Submit"
+    assert has_content? "Cannot update parking because of reasons."
+  end
   end
 end
