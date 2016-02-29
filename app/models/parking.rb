@@ -5,7 +5,7 @@ class Parking < ActiveRecord::Base
   accepts_nested_attributes_for :address,
     allow_destroy: true
 
-  validates :places, :hour_price, :day_price, :address, presence: true
+  validates :places, :hour_price, :day_price, :address, :owner, presence: true
   validates :kind, inclusion: { in: %w(outdoor indoor private street),
     message: "%{value} is not a valid kind" }
   validates :hour_price, :day_price, numericality: true
