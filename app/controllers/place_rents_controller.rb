@@ -25,6 +25,6 @@ class PlaceRentsController < ApplicationController
   private
 
   def place_rent_params
-    params.require(:place_rent).permit(:starts_at, :ends_at)
+    params.require(:place_rent).permit(:starts_at, :ends_at, :car_id, :parking_id)
   end
 end
