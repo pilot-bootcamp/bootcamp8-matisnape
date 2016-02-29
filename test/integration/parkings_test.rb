@@ -69,16 +69,17 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? "Cannot update parking because of reasons."
   end
 
-  test "user removes a parking" do
-    Capybara.current_driver = :selenium
-
-    visit '/parkings'
-    click_link "Remove", match: :first
-    page.accept_confirm
+  test "user removes a parking successfully" do
+    page.accept_confirm { click_link "Remove", match: :first }
     assert_not has_content? "Poznań 100 3.5 20.99"
     assert has_content? "Parking deleted successfully"
+  end
 
-    Capybara.use_default_driver
-    DatabaseCleaner.clean_with :truncation
+  test "user failes to remove a parking" do
+    page.dismiss_confirm { click_link "Remove", match: :first }
+
+    assert has_content? "Poznań 100 3.5 20.99"
+    assert has_content? "Warszawa 50 2.9 12.99"
+    assert_not has_content? "Parking deleted successfully"
   end
 end
