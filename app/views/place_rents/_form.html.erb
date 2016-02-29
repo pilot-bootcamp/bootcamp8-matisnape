@@ -1,4 +1,4 @@
-<%= form_for @place_rent do |f| %>
+<%= form_for [@parking, @place_rent] do |f| %>
   <%= f.label :car_id, "Select car:" %>
   <%= f.collection_select(:car_id, current_person.cars, :id, :display_car) %> <br />
 
@@ -6,6 +6,5 @@
   <%= f.datetime_select :starts_at %> <br />
   <%= f.label :ends_at, "Enter end date:" %>
   <%= f.datetime_select :ends_at %><br />
-  <%= f.hidden_field :parking_id %>
   <%= f.submit "Submit" %><br />
 <% end %><br />
