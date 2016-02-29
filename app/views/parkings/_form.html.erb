@@ -3,9 +3,12 @@
 
 <%= form_for @parking do |f| %>
   <%= f.fields_for :address_attributes, @parking.address do |address_fields| %>
-    Enter city: <%= address_fields.text_field :city %><br />
-    Enter street: <%= address_fields.text_field :street %><br />
-    Enter zipcode: <%= address_fields.text_field :zip_code %><br />
+    <%= address_fields.label :city, "Enter city:" %>
+    <%= address_fields.text_field :city %><br />
+    <%= address_fields.label :street, "Enter street:" %>
+    <%= address_fields.text_field :street %><br />
+    <%= address_fields.label :zip_code, "Enter zipcode:" %>
+    <%= address_fields.text_field :zip_code %><br />
   <% end %>
 
   <%= f.label :places, "Enter number of places available:" %>
