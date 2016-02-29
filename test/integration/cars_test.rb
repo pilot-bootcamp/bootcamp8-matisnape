@@ -52,4 +52,17 @@ class CarsTest < ActionDispatch::IntegrationTest
     click_on "Submit"
     assert has_content? "Cannot update car because of reasons."
   end
+
+  test "user removes a car successfully" do
+    page.accept_confirm { click_link "Remove", match: :first }
+    assert_not has_content? "PZ12345 Fiat Panda"
+    assert has_content? "Car deleted successfully"
+  end
+
+  test "user fails to remove a car" do
+    page.dismiss_confirm { click_link "Remove", match: :first }
+    assert has_content? "PZ12345 Fiat Panda"
+    assert has_content? "WE65432 Ford Escort"
+    assert_not has_content? "Car deleted successfully"
+  end
 end
