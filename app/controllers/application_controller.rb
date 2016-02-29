@@ -4,10 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_person
+  helper_method :show_current_controller
 
   private
 
   def current_person
     @current_person ||= Person.first
+  end
+
+  def show_current_controller
+    controller_name.gsub('_', ' ').capitalize
   end
 end
