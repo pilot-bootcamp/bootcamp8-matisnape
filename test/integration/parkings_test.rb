@@ -68,5 +68,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     click_on "Submit"
     assert has_content? "Cannot update parking because of reasons."
   end
+
+  test "user removes a parking" do
+    click_link "Remove", match: :first
+    assert_not has_content? "Poznań 100 3.5 20.99"
+    assert has_content? "Parking deleted successfully"
   end
 end
