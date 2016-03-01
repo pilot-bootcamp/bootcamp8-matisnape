@@ -17,8 +17,7 @@
     <tr>
       <td><%= place_rent.starts_at %></td>
       <td><%= place_rent.ends_at %></td>
-      <td><%= link_to place_rent.parking.address.display_full_address,
-                      parking_path(place_rent.parking) %></td>
+      <td><%= parking_address(place_rent.parking) %></td>
       <td><%= link_to place_rent.car.display_car,
                       car_path(place_rent.car) %></td>
       <td><%= place_rent.price %></td>
