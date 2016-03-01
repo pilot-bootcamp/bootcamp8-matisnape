@@ -31,24 +31,29 @@ class PlaceRentTest < ActiveSupport::TestCase
 
   test "Price is 0 if start date and end date are equal" do
     @place_rent.ends_at = @place_rent.starts_at
-    assert_equal 0, @place_rent.price.to_i
+    assert_equal 0, @place_rent.calculate_price.to_i
   end
 
   test "Price is counted for every started hour" do
     @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
     @place_rent.ends_at = DateTime.new(2015,11,19,9,00)
-    assert_equal 3.5, @place_rent.price.to_f
+    assert_equal 3.5, @place_rent.calculate_price.to_f
   end
 
   test "23 hours with minutes is counted as one day" do
     @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
     @place_rent.ends_at = DateTime.new(2015,11,20,8,00)
-    assert_equal 20.99, @place_rent.price.to_f
+    assert_equal 20.99, @place_rent.calculate_price.to_f
   end
 
   test "24 hours with minutes is counted as one day and one hour" do
     @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
     @place_rent.ends_at = DateTime.new(2015,11,20,9,00)
-    assert_equal 24.49, @place_rent.price.to_f
+    assert_equal 24.49, @place_rent.calculate_price.to_f
+  end
+
+  test "Price is updated after creating place rent" do
+    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: DateTime.new(2015,11,19,9,00), car: cars(:one))
+    assert_equal 3.5, @place_rent.price
   end
 end
