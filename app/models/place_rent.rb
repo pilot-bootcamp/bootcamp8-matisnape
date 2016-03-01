@@ -6,6 +6,8 @@ class PlaceRent < ActiveRecord::Base
 
   after_create { update(price: calculate_price) }
 
+  scope :open, -> (time) { where("? BETWEEN starts_at AND ends_at", time)}
+
   def calculate_price
     total_hours = ((ends_at - starts_at)/3600).ceil
     days, hours = total_hours.divmod(24)
