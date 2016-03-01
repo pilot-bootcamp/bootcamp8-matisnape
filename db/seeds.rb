@@ -21,3 +21,4 @@ parking1 = Parking.create(places: 100, kind: 'outdoor', hour_price: 3.5, day_pri
 parking2 = Parking.create(places: 50, kind: 'private', hour_price: 2.9, day_price: 12.99, address: address2, owner: person2)
 place_rent1 = PlaceRent.create(starts_at: '2016-01-24 08:15:34', ends_at: '2016-01-24 18:15:34', parking: parking1, car: car1)
 place_rent2 = PlaceRent.create(starts_at: '2016-02-24 10:15:34', ends_at: '2016-02-24 18:15:34', parking: parking2, car: car2)
+place_rent3 = PlaceRent.create(starts_at: '2016-01-24 10:15:34', ends_at: '2017-02-24 18:15:34', parking: parking1, car: car1)
