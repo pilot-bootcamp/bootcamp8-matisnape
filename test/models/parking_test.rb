@@ -48,4 +48,31 @@ class ParkingTest < ActiveSupport::TestCase
     @parking.day_price = ""
     assert_not @parking.valid?
   end
+
+  describe "scopes" do
+    setup do
+      @parking2 = parkings(:two)
+      @parking3 = parkings(:three)
+    end
+
+    test "Displays public parkings" do
+      assert_equal [@parking, @parking3], Parking.public_parkings
+    end
+
+    test "Displays private parkings" do
+      assert_equal [@parking2], Parking.private_parkings
+    end
+
+    test "Displays parkings from a city" do
+      assert_equal [@parking3], Parking.parkings_from('Wrocław')
+    end
+
+    test "Displays parkings with hour price withing range" do
+      assert_equal [@parking, @parking2], Parking.hourprice_between(1,5)
+    end
+
+    test "Displays parkings with day price within range" do
+      assert_equal [@parking, @parking2], Parking.dayprice_between(1,30)
+    end
+  end
 end
