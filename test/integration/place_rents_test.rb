@@ -16,20 +16,38 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
 
   # test missing for checking place rents if current user has no cars
 
-  describe "viewing place rents" do
+  describe "viewing place rents index" do
+    before { visit place_rents_path }
+
     test "user views a list of place rents" do
-      visit place_rents_path
       assert has_content? "2016-01-24 08:15:34 UTC 2016-01-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
         Fiat Panda PZ12345"
       assert has_content? "2016-02-24 10:15:34 UTC 2016-02-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
         Ford Escort WE65432"
     end
 
-    test "user can view a single place rent" do
+    test "user can see a place rents's prices" do
+      assert has_content? "Price of place rent"
+      assert has_content? "PZ12345 35.0"
+      assert has_content? "WE65432 28.0"
+    end
+  end
+
+  describe "viewing place rent details" do
+    before do
       visit place_rents_path
       click_link "Show", match: :first
+    end
+
+    test "user can view a single place rent" do
       assert has_content? "Fiat Panda PZ12345"
       assert_not has_content? "Ford Escort WE65432"
+    end
+
+    test "user can see a place rent's price on single place rent page" do
+      assert has_content? "Price of place rent"
+      assert has_content? "PZ12345 35.0"
+      assert_not has_content? "WE65432 28.0"
     end
   end
 
