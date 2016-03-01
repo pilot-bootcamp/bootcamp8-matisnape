@@ -24,8 +24,9 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   describe "adding a new parking" do
+    before { click_link "Add new parking" }
+
     test "user adds a new parking successfully with valid data" do
-      click_link "Add new parking"
       fill_in "Enter city:", with: "Lublin"
       fill_in "Enter street", with: "Poznańska"
       fill_in "Enter zipcode", with: "62-024"
@@ -39,15 +40,15 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     end
 
     test "user fails to add a new parking with invalid data" do
-      click_link "Add new parking"
       click_on "Submit"
       assert has_content? "Cannot create parking because of reasons."
     end
   end
 
   describe "editing a parking" do
+    before { click_link "Edit", match: :first }
+
     test "user edits a parking successfully" do
-      click_link "Edit", match: :first
       fill_in "Enter city:", with: "Lublin"
       fill_in "Enter street", with: "Poznańska"
       fill_in "Enter zipcode", with: "62-024"
@@ -62,7 +63,6 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     end
 
     test "user fails to edit a parking because of invalid data" do
-      click_link "Edit", match: :first
       fill_in "Enter city:", with: ""
       fill_in "Enter street", with: ""
       fill_in "Enter zipcode", with: ""
