@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CarsTest < ActionDispatch::IntegrationTest
   setup do
-    visit '/cars'
+    visit cars_path
   end
 
   test "user opens cars index" do
