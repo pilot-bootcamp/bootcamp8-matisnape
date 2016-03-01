@@ -16,8 +16,6 @@ class Parking < ActiveRecord::Base
   def close_place_rents
     time = DateTime.now
     open_place_rents = place_rents.open(time)
-    open_place_rents.each do |open_place_rent|
-      open_place_rent.update(ends_at: time)
-    end
+    open_place_rents.update_all(ends_at: time)
   end
 end
