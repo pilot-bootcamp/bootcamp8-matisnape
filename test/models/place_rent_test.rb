@@ -56,4 +56,19 @@ class PlaceRentTest < ActiveSupport::TestCase
     @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: DateTime.new(2015,11,19,9,00), car: cars(:one))
     assert_equal 3.5, @place_rent.price
   end
+
+  test "Open place rent is closed after parking is destroyed" do
+    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.now - 1.days, ends_at: DateTime.now + 2.days, car: cars(:one))
+    @place_rent.parking.destroy
+    @place_rent.reload
+    assert_in_delta DateTime.now.to_i, @place_rent.ends_at.to_i, 10
+  end
+
+  test "Place rents from the past are not changed after parking is destroyed" do
+    ends_at = DateTime.new(2015,11,19,9,00)
+    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: ends_at, car: cars(:one))
+    @place_rent.parking.destroy
+    @place_rent.reload
+    assert_equal ends_at, @place_rent.ends_at
+  end
 end
