@@ -9,3 +9,8 @@ two:
   city: Warszawa
   street: Marszałkowska
   zip_code: 00-300
+
+wroclaw:
+  city: Wrocław
+  street: Rzeźnicza
+  zip_code: 11-987
