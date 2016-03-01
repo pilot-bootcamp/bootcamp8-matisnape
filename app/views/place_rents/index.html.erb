@@ -7,6 +7,8 @@
       <th>End date</th>
       <th>Parking</th>
       <th>Car</th>
+      <th>Price of place rent</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,6 +21,7 @@
                       parking_path(place_rent.parking) %></td>
       <td><%= link_to place_rent.car.display_car,
                       car_path(place_rent.car) %></td>
+      <td><%= place_rent.price %></td>
       <td><%= link_to "Show", place_rent %></td>
     </tr>
     <% end %>
