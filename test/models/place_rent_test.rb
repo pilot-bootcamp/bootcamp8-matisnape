@@ -52,8 +52,9 @@ class PlaceRentTest < ActiveSupport::TestCase
     assert_equal 24.49, @place_rent.calculate_price.to_f
   end
 
-  test "Price is updated after creating place rent" do
+  test "Price is not afftected by changing parking prices" do
     @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: DateTime.new(2015,11,19,9,00), car: cars(:one))
+    @place_rent.parking.update(hour_price: 5)
     assert_equal 3.5, @place_rent.price
   end
 
