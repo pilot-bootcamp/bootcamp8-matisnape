@@ -35,8 +35,7 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
 
   describe "viewing place rent details" do
     before do
-      visit place_rents_path
-      click_link "Show", match: :first
+      visit place_rent_path(place_rents(:one))
     end
 
     test "user can view a single place rent" do
