@@ -2,7 +2,12 @@ require 'test_helper'
 
 class CarsTest < ActionDispatch::IntegrationTest
   setup do
+    sign_in("anna.nowak@netguru.pl", "password")
     visit cars_path
+  end
+
+  teardown do
+    Capybara.reset!
   end
 
   describe "viewing cars" do
