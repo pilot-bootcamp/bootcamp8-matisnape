@@ -15,7 +15,7 @@
 <%= link_to "Go to place rents list", place_rents_path %><br /><br />
 <% if current_person.present? %>
   Logged in as: <%= current_person.full_name %> <br />
-  <%= link_to "Log out", '/session#destroy', method: :delete %>
+  <%= link_to "Log out", session_path, method: :delete %>
   <% else %>
   You're not logged in <br />
   <%= link_to "Log in", new_session_path %>
