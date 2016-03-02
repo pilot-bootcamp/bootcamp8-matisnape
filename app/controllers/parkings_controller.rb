@@ -57,7 +57,7 @@ class ParkingsController < ApplicationController
   end
 
   def parking
-    @parking = current_person.parkings.includes(:address).find(params[:id])
+    @parking = Parking.all.includes(:address).find(params[:id])
   end
 
   def query_params
