@@ -57,7 +57,7 @@ class ParkingsController < ApplicationController
   end
 
   def parking
-    @parking = Parking.all.includes(:address).find(params[:id])
+    @parking = Parking.find(params[:id])
   end
 
   def query_params
@@ -66,6 +66,6 @@ class ParkingsController < ApplicationController
 
   def parking_not_found
     flash[:error] = "There's no such parking"
-    redirect_to cars_path
+    redirect_to parkings_path
   end
 end
