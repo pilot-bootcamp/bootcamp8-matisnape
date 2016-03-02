@@ -21,6 +21,11 @@ class ParkingsTest < ActionDispatch::IntegrationTest
       assert has_content? "Parking Poznań, Św. Marcin"
       assert_not has_content? "Warszawa 50 2.9 12.99"
     end
+
+    it "user sees error message when trying to go to a nonexistent parking page" do
+      visit parking_path("bjh")
+      assert has_content? "There's no such parking"
+    end
   end
 
   describe "adding a new parking" do
