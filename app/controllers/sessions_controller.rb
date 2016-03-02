@@ -13,6 +13,9 @@ class SessionsController < ApplicationController
     if user.present?
       session[:current_user_id] = user.id
       redirect_to root_url, notice: "You have successfully logged in."
+    else
+      flash.now[:error] = "Your credentials are invalid. Try again"
+      render 'new'
     end
   end
 
