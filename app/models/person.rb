@@ -7,6 +7,6 @@ class Person < ActiveRecord::Base
   validates :first_name, presence: true
 
   def full_name
-    [first_name, last_name].compact.reject(&:empty?).join(" ")
+    "#{first_name} #{last_name}".strip
   end
 end
