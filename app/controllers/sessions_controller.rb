@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = Account.find_by(account_params)
+    user = Account.authenticate(account_params[:email], account_params[:password])
     if user.present?
       session[:current_user_id] = user.id
       redirect_to root_url, notice: "You have successfully logged in."
