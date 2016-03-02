@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
     render 'new'
   end
 
+  def show
+    redirect_to new_session_path
+  end
+
   def create
     user = Account.find_by(account_params)
     if user.present?
