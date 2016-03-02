@@ -10,7 +10,7 @@ class Parking < ActiveRecord::Base
   validates :hour_price, :day_price, numericality: true
 
   scope :private_parkings, -> { where(kind: "private") }
-  scope :public_parkings, -> { where("kind = 'outdoor' OR kind = 'street'") }
+  scope :public_parkings, -> { where.not(kind: "private") }
   scope :parkings_from, -> (city) { joins(:address).where("addresses.city ILIKE ?", city) }
   scope :dayprice_between, -> (min, max) { where("day_price > ? AND day_price < ?", min, max) }
   scope :hourprice_between, -> (min, max) { where("hour_price > ? AND hour_price < ?", min, max) }
