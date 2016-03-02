@@ -1,7 +1,7 @@
 class ParkingsController < ApplicationController
 
   def index
-    @parkings = current_person.parkings.includes(:address)
+    @parkings = Parking.search(params)
   end
 
   def show
