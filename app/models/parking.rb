@@ -19,6 +19,7 @@ class Parking < ActiveRecord::Base
 
   def self.search(params)
     parkings = Parking.all.includes(:address)
+    return parkings if params.blank?
     unless params[:kind_private].present? && params[:kind_public].present?
       parkings = parkings.private_parkings if params[:kind_private].present?
       parkings = parkings.public_parkings if params[:kind_public].present?
