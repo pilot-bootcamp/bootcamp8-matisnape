@@ -2,11 +2,11 @@
 
 one:
   email: anna.nowak@netguru.pl
-  password: password
+  password_digest: <%= BCrypt::Password.create('password') %>
   person: one
 
 
 two:
   email: admin@example.com
-  password: password123
+  password_digest: <%= BCrypt::Password.create('password123') %>
   person: two
