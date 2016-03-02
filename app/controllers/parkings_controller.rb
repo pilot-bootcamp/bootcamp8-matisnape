@@ -1,4 +1,5 @@
 class ParkingsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :parking_not_found
   helper_method :query_params
 
   def index
@@ -62,5 +63,10 @@ class ParkingsController < ApplicationController
 
   def query_params
     params.permit(query: [:kind_private, :kind_public, :city, :min_hour_price, :max_hour_price, :min_day_price, :max_day_price]).fetch(:query, {})
+  end
+
+  def parking_not_found
+    flash[:error] = "There's no such parking"
+    redirect_to cars_path
   end
 end
