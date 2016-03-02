@@ -1,7 +1,8 @@
 class ParkingsController < ApplicationController
+  helper_method :query_params
 
   def index
-    @parkings = Parking.search(params)
+    @parkings = Parking.search(params[:query])
   end
 
   def show
@@ -54,5 +55,9 @@ class ParkingsController < ApplicationController
 
   def parking
     @parking = current_person.parkings.includes(:address).find(params[:id])
+  end
+
+  def query_params
+    params.permit(query: [:kind_private, :kind_public, :city, :min_hour_price, :max_hour_price, :min_day_price, :max_day_price]).fetch(:query, {})
   end
 end
