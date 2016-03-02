@@ -12,8 +12,8 @@ class Parking < ActiveRecord::Base
   scope :private_parkings, -> { where(kind: "private") }
   scope :public_parkings, -> { where.not(kind: "private") }
   scope :parkings_from, -> (city) { joins(:address).where("addresses.city = ?", city) }
-  scope :dayprice_between, -> (min, max) { where("day_price > ? AND day_price < ?", min, max) }
-  scope :hourprice_between, -> (min, max) { where("hour_price > ? AND hour_price < ?", min, max) }
+  scope :dayprice_between, -> (min, max) { where("day_price BETWEEN ? AND ?", min, max) }
+  scope :hourprice_between, -> (min, max) { where("hour_price BETWEEN ? AND ?", min, max) }
 
   after_destroy :close_place_rents
 
