@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to new_session_path unless current_person.present?
+    if current_person.blank?
+      flash[:error] = "You have to log in first"
+      redirect_to new_session_path
+    end
   end
 end
