@@ -40,4 +40,12 @@ class SearchParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? "Warszawa 50 2.9 12.99"
     assert_not has_content? "Poznań 100 3.5 20.99"
   end
+
+  test "after search submission, user sees parkings with hour price within specified range" do
+    fill_in "Min. price per hour:", with: "2.9"
+    fill_in "Max. price per hour:", with: "3"
+    click_on "Search"
+    assert has_content? "Warszawa 50 2.9 12.99"
+    assert_not has_content? "Poznań 100 3.5 20.99"
+  end
 end
