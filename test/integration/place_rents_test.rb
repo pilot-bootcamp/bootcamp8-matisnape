@@ -1,53 +1,75 @@
 require 'test_helper'
 
 class PlaceRentsTest < ActionDispatch::IntegrationTest
-  setup { sign_in("anna.nowak@netguru.pl", "password") }
-
-  test "user adds a new place rent successfully with valid data" do
-    visit parkings_path
-    click_link "Rent a place", match: :first
-    select "Fiat Panda PZ12345", from: "Select car:"
-    select_date_and_time(DateTime.new(2011, 11, 19, 8, 37), from: :place_rent_starts_at)
-    select_date_and_time(DateTime.new(2012, 11, 19, 8, 37), from: :place_rent_ends_at)
-    click_on "Submit"
-    assert has_content? "Place rent has been saved correctly"
-    assert has_content? "2011-11-19 08:37:00 UTC 2012-11-19 08:37:00 UTC 61-248 Poznań, Św. Marcin
-      Fiat Panda PZ12345"
+  teardown do
+    Capybara.reset!
   end
 
-  # test missing for checking place rents if current user has no cars
+  describe "logged in user" do
+    setup { sign_in("anna.nowak@netguru.pl", "password") }
 
-  describe "viewing place rents index" do
-    before { visit place_rents_path }
-
-    test "user views a list of place rents" do
-      assert has_content? "2016-01-24 08:15:34 UTC 2016-01-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
+    test "user adds a new place rent successfully with valid data" do
+      visit parkings_path
+      click_link "Rent a place", match: :first
+      select "Fiat Panda PZ12345", from: "Select car:"
+      select_date_and_time(DateTime.new(2011, 11, 19, 8, 37), from: :place_rent_starts_at)
+      select_date_and_time(DateTime.new(2012, 11, 19, 8, 37), from: :place_rent_ends_at)
+      click_on "Submit"
+      assert has_content? "Place rent has been saved correctly"
+      assert has_content? "2011-11-19 08:37:00 UTC 2012-11-19 08:37:00 UTC 61-248 Poznań, Św. Marcin
         Fiat Panda PZ12345"
-      assert has_content? "2016-02-24 10:15:34 UTC 2016-02-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
-        Ford Escort WE65432"
     end
 
-    test "user can see a place rents's prices" do
-      assert has_content? "Price of place rent"
-      assert has_content? "PZ12345 35.0"
-      assert has_content? "WE65432 28.0"
+    # test missing for checking place rents if current user has no cars
+
+    describe "viewing place rents index" do
+      before { visit place_rents_path }
+
+      test "user views a list of place rents" do
+        assert has_content? "2016-01-24 08:15:34 UTC 2016-01-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
+          Fiat Panda PZ12345"
+        assert has_content? "2016-02-24 10:15:34 UTC 2016-02-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
+          Ford Escort WE65432"
+      end
+
+      test "user can see a place rents's prices" do
+        assert has_content? "Price of place rent"
+        assert has_content? "PZ12345 35.0"
+        assert has_content? "WE65432 28.0"
+      end
+    end
+
+    describe "viewing place rent details" do
+      before { visit place_rent_path(place_rents(:one)) }
+
+      test "user can view a single place rent" do
+        assert has_content? "Fiat Panda PZ12345"
+        assert_not has_content? "Ford Escort WE65432"
+      end
+
+      test "user can see a place rent's price on single place rent page" do
+        assert has_content? "Price of place rent"
+        assert has_content? "PZ12345 35.0"
+        assert_not has_content? "WE65432 28.0"
+      end
     end
   end
 
-  describe "viewing place rent details" do
-    before do
+  describe "unlogged user" do
+    test "cannot see place rents page" do
+      visit place_rents_path
+      assert has_content? "You have to log in first"
+    end
+
+    test "cannot add a new place rent" do
+      visit parkings_path
+      click_link "Rent a place", match: :first
+      assert has_content? "You have to log in first"
+    end
+
+    test "cannot view a single place rent" do
       visit place_rent_path(place_rents(:one))
-    end
-
-    test "user can view a single place rent" do
-      assert has_content? "Fiat Panda PZ12345"
-      assert_not has_content? "Ford Escort WE65432"
-    end
-
-    test "user can see a place rent's price on single place rent page" do
-      assert has_content? "Price of place rent"
-      assert has_content? "PZ12345 35.0"
-      assert_not has_content? "WE65432 28.0"
+      assert has_content? "You have to log in first"
     end
   end
 
