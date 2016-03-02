@@ -20,6 +20,11 @@ class CarsTest < ActionDispatch::IntegrationTest
       assert has_content? "PZ12345 Fiat Panda"
       assert_not has_content? "WE65432 Ford Escort"
     end
+
+    test "user sees error message when trying to go to a nonexistent car page" do
+      visit car_path("bjh")
+      assert has_content? "There's no such car"
+    end
   end
 
   describe "adding a new car" do
