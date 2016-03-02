@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PlaceRentsTest < ActionDispatch::IntegrationTest
+  setup { sign_in("anna.nowak@netguru.pl", "password") }
+
   test "user adds a new place rent successfully with valid data" do
     visit parkings_path
     click_link "Rent a place", match: :first
