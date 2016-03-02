@@ -4,7 +4,7 @@ class ParkingsController < ApplicationController
 
   def index
     @parkings = Parking.search(params[:query])
-    if Parking.search(params[:query]).empty?
+    if @parkings.empty?
       flash[:error] = "There are no search results!"
     end
   end
