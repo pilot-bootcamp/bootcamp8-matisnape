@@ -7,6 +7,8 @@ require 'capybara-webkit'
 require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 
+Dir["./test/helpers/**/*.rb"].sort.each { |f| require f }
+
 class ActiveSupport::TestCase
   fixtures :all
 end
