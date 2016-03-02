@@ -27,4 +27,16 @@ class SearchParkingsTest < ActionDispatch::IntegrationTest
     assert has_field? "Max. price per hour:", with: "2"
     assert has_field? "Parking city", with: "Warszawa"
   end
+
+  test "after search form submission, the parkings index displays flash error if there are no search results" do
+    fill_in "Parking city:", with: "London"
+    click_on "Search"
+    assert has_content? "There are no search results!"
+  end
+
+  test "after search form submission, the parkings index displays results" do
+    check "Private parkings"
+    click_on "Search"
+    assert has_content? "Warszawa 50 2.9 12.99"
+  end
 end
