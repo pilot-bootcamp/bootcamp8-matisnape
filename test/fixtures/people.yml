@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: Katarzyna
-  last_name: Iksińska
+  first_name: Anna
+  last_name: Nowak
 
-# two:
-#   first_name: Janusz
-#   last_name: Ygrekowski
+two:
+  first_name: Janusz
+  last_name: Ygrekowski

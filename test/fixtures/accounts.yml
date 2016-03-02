@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: anna.nowak@netguru.pl
+  password: password
+  person: one
+
+
+two:
+  email: admin@example.com
+  password: password123
+  person: two
