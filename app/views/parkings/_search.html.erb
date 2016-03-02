@@ -1,20 +1,20 @@
 <h3>Search</h3>
 
 <%= form_tag(parkings_path, method: "get") do %>
-  <%= check_box_tag :kind_private, true, params[:kind_private] %>
-  <%= label_tag(:kind_private, "Private parkings") %>
-  <%= check_box_tag :kind_public, true, params[:kind_public] %>
-  <%= label_tag :kind_public, "Public parkings" %> <br/>
-  <%= label_tag :min_day_price, "Min. price per day:" %>
-  <%= text_field_tag :min_day_price, params[:min_day_price] %>
-  <%= label_tag :max_day_price, "Max. price per day:" %>
-  <%= text_field_tag :max_day_price, params[:max_day_price] %><br />
-  <%= label_tag :min_hour_price, "Min. price per hour:" %>
-  <%= text_field_tag :min_hour_price, params[:min_hour_price] %>
-  <%= label_tag :max_hour_price, "Max. price per hour:" %>
-  <%= text_field_tag :max_hour_price, params[:max_hour_price] %><br />
-  <%= label_tag :city, "Parking city:" %>
-  <%= text_field_tag :city, params[:city] %><br />
+  <%= check_box_tag "query[kind_private]", "1", query_params[:kind_private] %>
+  <%= label_tag "query[kind_private]", "Private parkings" %>
+  <%= check_box_tag "query[kind_public]", true, query_params[:kind_public] %>
+  <%= label_tag "query[kind_public]", "Public parkings" %> <br/>
+  <%= label_tag "query[min_day_price]", "Min. price per day:" %>
+  <%= text_field_tag "query[min_day_price]", query_params[:min_day_price] %>
+  <%= label_tag "query[max_day_price]", "Max. price per day:" %>
+  <%= text_field_tag "query[max_day_price]", query_params[:max_day_price] %><br />
+  <%= label_tag "query[min_hour_price]", "Min. price per hour:" %>
+  <%= text_field_tag "query[min_hour_price]", query_params[:min_hour_price] %>
+  <%= label_tag "query[max_hour_price]", "Max. price per hour:" %>
+  <%= text_field_tag "query[max_hour_price]", query_params[:max_hour_price] %><br />
+  <%= label_tag "query[city]", "Parking city:" %>
+  <%= text_field_tag "query[city]", query_params[:city] %><br />
   <%= submit_tag "Search" %><br />
 <% end %>
 <br />
