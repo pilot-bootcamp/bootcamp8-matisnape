@@ -15,16 +15,16 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "Display full name of current user" do
-    assert_equal "Katarzyna Iksińska", @person.full_name
+    assert_equal "Anna Nowak", @person.full_name
   end
 
   test "Display only first name of current user if last name is empty" do
     @person.last_name = ""
-    assert_equal "Katarzyna", @person.full_name
+    assert_equal "Anna", @person.full_name
   end
 
   test "Display only first name of current user if last name is nil" do
     @person.last_name = nil
-    assert_equal "Katarzyna", @person.full_name
+    assert_equal "Anna", @person.full_name
   end
 end
