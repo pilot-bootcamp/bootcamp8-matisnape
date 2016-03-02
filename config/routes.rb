@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   resources :place_rents, only: [:index, :show]
   resources :cars
+  resource :session
 end
