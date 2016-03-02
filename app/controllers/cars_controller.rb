@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :car_not_found
+
   def index
     @cars = current_person.cars
   end
@@ -53,5 +55,10 @@ class CarsController < ApplicationController
 
   def car
     @car ||= current_person.cars.find(params[:id])
+  end
+
+  def car_not_found
+    flash[:error] = "There's no such car"
+    redirect_to cars_path
   end
 end
