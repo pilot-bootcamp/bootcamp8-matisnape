@@ -2,6 +2,9 @@ class ParkingsController < ApplicationController
   helper_method :query_params
 
   def index
+    if Parking.search(params[:query]).empty?
+      flash[:error] = "There are no search results!"
+    end
     @parkings = Parking.search(params[:query])
   end
 
