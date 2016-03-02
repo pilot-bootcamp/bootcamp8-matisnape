@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
+  teardown do
+    Capybara.reset!
+  end
+
   describe "viewing parkings" do
     setup do
       visit parkings_path
@@ -24,6 +28,18 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     it "user sees error message when trying to go to a nonexistent parking page" do
       visit parking_path("bjh")
       assert has_content? "There's no such parking"
+    end
+
+    describe "unlogged user" do
+      it "cannot view create new parking" do
+        click_link "Add new parking"
+        assert has_content? "You have to log in first"
+      end
+
+      it "cannot delete a parking" do
+        click_link "Remove", match: :first
+        assert has_content? "You have to log in first"
+      end
     end
   end
 
