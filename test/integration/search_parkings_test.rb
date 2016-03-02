@@ -38,5 +38,6 @@ class SearchParkingsTest < ActionDispatch::IntegrationTest
     check "Private parkings"
     click_on "Search"
     assert has_content? "Warszawa 50 2.9 12.99"
+    assert_not has_content? "Poznań 100 3.5 20.99"
   end
 end
