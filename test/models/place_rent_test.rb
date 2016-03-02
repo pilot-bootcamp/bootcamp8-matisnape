@@ -35,25 +35,25 @@ class PlaceRentTest < ActiveSupport::TestCase
   end
 
   test "Price is counted for every started hour" do
-    @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
-    @place_rent.ends_at = DateTime.new(2015,11,19,9,00)
+    @place_rent.starts_at = DateTime.new(2015, 11, 19, 8, 37)
+    @place_rent.ends_at = DateTime.new(2015, 11, 19, 9, 00)
     assert_equal 3.5, @place_rent.calculate_price.to_f
   end
 
   test "23 hours with minutes is counted as one day" do
-    @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
-    @place_rent.ends_at = DateTime.new(2015,11,20,8,00)
+    @place_rent.starts_at = DateTime.new(2015, 11, 19, 8, 37)
+    @place_rent.ends_at = DateTime.new(2015, 11, 20, 8, 00)
     assert_equal 20.99, @place_rent.calculate_price.to_f
   end
 
   test "24 hours with minutes is counted as one day and one hour" do
-    @place_rent.starts_at = DateTime.new(2015,11,19,8,37)
-    @place_rent.ends_at = DateTime.new(2015,11,20,9,00)
+    @place_rent.starts_at = DateTime.new(2015, 11, 19, 8, 37)
+    @place_rent.ends_at = DateTime.new(2015, 11, 20, 9, 00)
     assert_equal 24.49, @place_rent.calculate_price.to_f
   end
 
   test "Price is not afftected by changing parking prices" do
-    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: DateTime.new(2015,11,19,9,00), car: cars(:one))
+    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015, 11, 19, 8, 00), ends_at: DateTime.new(2015, 11, 19, 9, 00), car: cars(:one))
     @place_rent.parking.update(hour_price: 5)
     assert_equal 3.5, @place_rent.price
   end
@@ -66,8 +66,8 @@ class PlaceRentTest < ActiveSupport::TestCase
   end
 
   test "Place rents from the past are not changed after parking is destroyed" do
-    ends_at = DateTime.new(2015,11,19,9,00)
-    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015,11,19,8,00), ends_at: ends_at, car: cars(:one))
+    ends_at = DateTime.new(2015, 11, 19, 9, 00)
+    @place_rent = PlaceRent.create(parking: parkings(:one), starts_at: DateTime.new(2015, 11, 19, 8, 00), ends_at: ends_at, car: cars(:one))
     @place_rent.parking.destroy
     @place_rent.reload
     assert_equal ends_at, @place_rent.ends_at

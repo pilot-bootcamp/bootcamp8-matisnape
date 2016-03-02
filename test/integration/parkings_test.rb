@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
-
   setup do
     visit parkings_path
   end

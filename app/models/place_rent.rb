@@ -6,10 +6,10 @@ class PlaceRent < ActiveRecord::Base
 
   before_create :calculate_price
 
-  scope :open, -> (time) { where("? BETWEEN starts_at AND ends_at", time)}
+  scope :open, -> (time) { where("? BETWEEN starts_at AND ends_at", time) }
 
   def calculate_price
-    total_hours = ((ends_at - starts_at)/3600).ceil
+    total_hours = ((ends_at - starts_at) / 3600).ceil
     days, hours = total_hours.divmod(24)
     self.price = parking.day_price * days + parking.hour_price * hours
   end

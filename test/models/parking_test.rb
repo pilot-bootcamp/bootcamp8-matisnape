@@ -68,11 +68,11 @@ class ParkingTest < ActiveSupport::TestCase
     end
 
     test "Displays parkings with hour price withing range" do
-      assert_equal [@parking, @parking2], Parking.hourprice_between(1,5)
+      assert_equal [@parking, @parking2], Parking.hourprice_between(1, 5)
     end
 
     test "Displays parkings with day price within range" do
-      assert_equal [@parking, @parking2], Parking.dayprice_between(1,30)
+      assert_equal [@parking, @parking2], Parking.dayprice_between(1, 30)
     end
   end
 end

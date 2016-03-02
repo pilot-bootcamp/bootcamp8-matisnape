@@ -4,9 +4,7 @@ class ParkingsController < ApplicationController
 
   def index
     @parkings = Parking.search(params[:query])
-    if @parkings.empty?
-      flash[:error] = "There are no search results!"
-    end
+    flash[:error] = "There are no search results!" if @parkings.empty?
   end
 
   def show
@@ -54,7 +52,7 @@ class ParkingsController < ApplicationController
   private
 
   def parking_params
-    params.require(:parking).permit(:places, :hour_price, :day_price, :kind, address_attributes: [ :city, :street, :zip_code ])
+    params.require(:parking).permit(:places, :hour_price, :day_price, :kind, address_attributes: [:city, :street, :zip_code])
   end
 
   def parking

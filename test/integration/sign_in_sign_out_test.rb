@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SignInSignOutTest < ActionDispatch::IntegrationTest
-
   teardown do
     Capybara.reset!
   end

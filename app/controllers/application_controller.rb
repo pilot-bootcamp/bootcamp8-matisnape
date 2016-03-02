@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def current_person
     @current_user ||= session[:current_user_id] &&
-      Account.find_by(id: session[:current_user_id]).person
+                      Account.find_by(id: session[:current_user_id]).person
   end
 
   def show_current_controller
