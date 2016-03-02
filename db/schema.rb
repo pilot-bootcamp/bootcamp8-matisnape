@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302143659) do
+ActiveRecord::Schema.define(version: 20160302164010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.string  "email"
-    t.string  "password"
     t.integer "person_id"
+    t.string  "password_digest"
   end
 
   add_index "accounts", ["person_id"], name: "index_accounts_on_person_id", using: :btree
