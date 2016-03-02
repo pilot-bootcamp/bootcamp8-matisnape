@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   has_many :place_rents, through: :cars
   validates :first_name, presence: true
 
-  def fullname
+  def full_name
     [first_name, last_name].compact.join(" ")
   end
 end
