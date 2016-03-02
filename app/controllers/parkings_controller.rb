@@ -1,6 +1,7 @@
 class ParkingsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :parking_not_found
   helper_method :query_params
+  skip_before_filter :require_login, except: [:new, :create, :edit, :destroy]
 
   def index
     @parkings = Parking.search(params[:query])
