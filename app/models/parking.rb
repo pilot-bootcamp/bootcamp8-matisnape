@@ -17,6 +17,18 @@ class Parking < ActiveRecord::Base
 
   after_destroy :close_place_rents
 
+  def self.search(params)
+    parkings = Parking.all.includes(:address)
+    unless params[:kind_private].present? && params[:kind_public].present?
+      parkings = parkings.private_parkings if params[:kind_private].present?
+      parkings = parkings.public_parkings if params[:kind_public].present?
+    end
+    parkings = parkings.parkings_from(params[:city]) if params[:city].present?
+    parkings = parkings.dayprice_between(params[:min_day_price],params[:max_day_price]) if params[:min_day_price].present? && params[:max_day_price].present?
+    parkings = parkings.hourprice_between(params[:min_hour_price],params[:max_hour_price]) if params[:min_hour_price].present? && params[:max_hour_price].present?
+    parkings
+  end
+
   private
 
   def close_place_rents
