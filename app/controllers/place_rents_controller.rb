@@ -4,7 +4,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def show
-    @place_rent = current_person.place_rents.includes({ parking: [:address] }, :car).find(params[:id])
+    @place_rent = current_person.place_rents.includes({ parking: [:address] }, :car).find_by(uuid: params[:id])
   end
 
   def new
