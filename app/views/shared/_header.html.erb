@@ -1,0 +1,19 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav>
+      <ul class="nav navbar-nav navbar-right nav-item">
+        <li><%= link_to "Go to parkings list", parkings_path %></li>
+        <% if current_person.present? %>
+        <li><%= link_to "Go to cars list", cars_path %></li>
+        <li><%= link_to "Go to place rents list", place_rents_path %></li>
+        <li>Logged in as: <br /><%= current_person.full_name %></li>
+        <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% else %>
+        <li>You're not logged in</li>
+        <li><%= link_to "Log in", login_path %></li>
+        <li><%= link_to "Register", register_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
