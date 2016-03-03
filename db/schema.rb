@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302164010) do
+ActiveRecord::Schema.define(version: 20160303134013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,12 @@ ActiveRecord::Schema.define(version: 20160302164010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal  "price"
+    t.string   "uuid"
   end
 
   add_index "place_rents", ["car_id"], name: "index_place_rents_on_car_id", using: :btree
   add_index "place_rents", ["parking_id"], name: "index_place_rents_on_parking_id", using: :btree
+  add_index "place_rents", ["uuid"], name: "index_place_rents_on_uuid", unique: true, using: :btree
 
   create_table "search_parkings", force: :cascade do |t|
     t.datetime "created_at", null: false
