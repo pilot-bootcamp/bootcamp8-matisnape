@@ -2,7 +2,11 @@ class AccountsController < ApplicationController
   skip_before_filter :require_login
 
   def new
-    @account = Account.new
+    if current_person.blank?
+      @account = Account.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -12,7 +16,6 @@ class AccountsController < ApplicationController
       redirect_to login_path
     else
       flash.now[:error] = "Cannot register because of reasons."
-      #binding.pry
       render 'new'
     end
   end
