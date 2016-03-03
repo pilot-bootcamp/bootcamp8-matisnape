@@ -9,7 +9,7 @@
         <li>Logged in as: <br /><%= current_person.full_name %></li>
         <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
-        <li>You're not logged in</li>
+        <li>You're not<br /> logged in</li>
         <li><%= link_to "Log in", login_path %></li>
         <li><%= link_to "Register", register_path %></li>
         <% end %>
