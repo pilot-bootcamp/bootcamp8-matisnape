@@ -6,4 +6,8 @@ class Car < ActiveRecord::Base
   def display_car
     "#{model} #{registration_number}"
   end
+
+  def to_param
+    "#{id}-#{model.parameterize}"
+  end
 end
