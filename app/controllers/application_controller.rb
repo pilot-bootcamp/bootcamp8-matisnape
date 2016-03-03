@@ -18,10 +18,21 @@ class ApplicationController < ActionController::Base
     controller_name.gsub('_', ' ').capitalize
   end
 
-  def require_login
+  def require_login(return_point = request.url)
     if current_person.blank?
+      set_return_point(return_point)
       flash[:error] = "You have to log in first"
       redirect_to new_session_path
     end
+  end
+
+  def set_return_point(path)
+    if session[:return_point].blank?
+      session[:return_point] = path
+    end
+  end
+
+  def return_point
+    session[:return_point] || root_path
   end
 end
