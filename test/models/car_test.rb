@@ -25,6 +25,6 @@ class CarTest < ActiveSupport::TestCase
   end
 
   test "URL contains model name" do
-    assert_match "fiat-panda", @car.to_param
+    assert_equal "980190962-fiat-panda", @car.to_param
   end
 end
