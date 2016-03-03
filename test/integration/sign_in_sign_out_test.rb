@@ -70,13 +70,12 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       fill_in "Enter last name:", with: "Kowalska"
       click_button "Submit"
       assert has_content? "Congratz on signing up! Now you can log in"
-      assert_equal true, Account.find_by(email: "registeruser@example.com").present?
+      assert Account.find_by(email: "registeruser@example.com").present?
     end
 
     test "invalid signup" do
       click_button "Submit"
       assert has_content? "Cannot register because of reasons."
-      assert has_content? "errors prohibited this from being changed:"
     end
   end
 end
