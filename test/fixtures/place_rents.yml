@@ -6,6 +6,7 @@ one:
   parking: one
   car: one
   price: 35
+  uuid: 7ccac9da-3279-498c-8a9d-4ef156dff091
 
 two:
   starts_at: 2016-02-24 10:15:34
@@ -13,3 +14,4 @@ two:
   parking: one
   car: two
   price: 28
+  uuid: 8c9c9beb-4472-4564-bfec-d1d23a3542ab
