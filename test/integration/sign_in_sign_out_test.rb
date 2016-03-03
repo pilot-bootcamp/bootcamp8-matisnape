@@ -49,7 +49,7 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
 
   describe "Logging out" do
     test "user can log out" do
-      visit '/session/new'
+      visit login_path
       fill_in "Email:", with: "anna.nowak@netguru.pl"
       fill_in "Password:", with: "password"
       click_button "Sign in"
@@ -57,6 +57,26 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       assert has_content? "You have successfully logged out."
       assert has_content? "You're not logged in"
       assert_equal current_path, root_path
+    end
+  end
+
+  describe "Sign in" do
+    setup { visit register_path }
+    test "valid signup information" do
+      fill_in "Enter email:", with: "registeruser@example.com"
+      fill_in "Enter password:", with: "password"
+      fill_in "Enter password confirmation:", with: "password"
+      fill_in "Enter first name:", with: "Teresa"
+      fill_in "Enter last name:", with: "Kowalska"
+      click_button "Submit"
+      assert has_content? "Congratz on signing up! Now you can log in"
+      assert_equal true, Account.find_by(email: "registeruser@example.com").present?
+    end
+
+    test "invalid signup" do
+      click_button "Submit"
+      assert has_content? "Cannot register because of reasons."
+      assert has_content? "errors prohibited this from being changed:"
     end
   end
 end
