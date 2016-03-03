@@ -1,11 +1,12 @@
 class PlaceRent < ActiveRecord::Base
   belongs_to :car
   belongs_to :parking
+  has_one :owner, through: :car
 
   validates :starts_at, :ends_at, :parking, :car, presence: true
 
   before_create :calculate_price
-  before_create :generate_uuid, unless: :uuid?
+  before_create :generate_uuid
 
   scope :open, -> (time) { where("? BETWEEN starts_at AND ends_at", time) }
 
@@ -20,6 +21,6 @@ class PlaceRent < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{uuid}"
+    uuid
   end
 end
