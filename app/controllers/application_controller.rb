@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if current_person.blank?
       set_return_point(return_point)
       flash[:error] = "You have to log in first"
-      redirect_to new_session_path
+      redirect_to login_path
     end
   end
 

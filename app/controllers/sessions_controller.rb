@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def show
-    redirect_to new_session_path
+    redirect_to login_path
   end
 
   def create

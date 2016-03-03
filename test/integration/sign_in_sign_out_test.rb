@@ -39,7 +39,7 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       end
 
       test "from new session path redirects to root" do
-        visit new_session_path
+        visit login_path
         sign_in("anna.nowak@netguru.pl", "password")
         assert has_content? "You have successfully logged in."
         assert_equal current_path, root_path
