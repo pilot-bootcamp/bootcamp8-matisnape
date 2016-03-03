@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :place_rents, only: [:index, :show]
   resources :cars
   resource :session
+  resources :accounts, except: [:show, :index]
 end
