@@ -45,6 +45,7 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
       test "user can view a single place rent" do
         assert has_content? "Fiat Panda PZ12345"
         assert_not has_content? "Ford Escort WE65432"
+        assert_match place_rents(:one).uuid, place_rent_path(place_rents(:one))
       end
 
       test "user can see a place rent's price on single place rent page" do
