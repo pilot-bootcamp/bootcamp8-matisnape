@@ -23,4 +23,8 @@ class CarTest < ActiveSupport::TestCase
     @car.owner = nil
     assert_not @car.valid?, "can't be blank"
   end
+
+  test "URL contains model name" do
+    assert_match "fiat-panda", @car.to_param
+  end
 end
