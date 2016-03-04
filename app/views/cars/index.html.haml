@@ -1,0 +1,19 @@
+%h1 Cars
+%table.table.table-striped
+  %thead
+    %tr
+      %th Registration number
+      %th Model
+      %th
+  %tbody
+    - @cars.each do |car|
+      %tr
+        %td= car.registration_number
+        %td= car.model
+        %td
+          .btn-group.pull-right
+            = link_to "Show", car, class: "btn btn-info"
+            = link_to "Edit", edit_car_path(car), class: "btn btn-default"
+            = link_to "Remove", car, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }
+%br/
+= link_to "Add new car", new_car_path
