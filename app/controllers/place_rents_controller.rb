@@ -8,6 +8,10 @@ class PlaceRentsController < ApplicationController
   end
 
   def new
+    if current_person.cars.empty?
+      flash[:error] = "You can't create a place rent without having any car. Add a car first."
+      redirect_to new_car_path
+    end
     @place_rent = parking.place_rents.build
   end
 
