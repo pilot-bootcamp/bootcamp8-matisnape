@@ -21,5 +21,6 @@
             = link_to t('crud.show'), parking, class: "btn btn-info"
             = link_to t('crud.edit'), edit_parking_path(parking), class: "btn btn-default"
             = link_to t('crud.delete'), parking, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }
+= will_paginate
 %br/
 = link_to t('parkings.add_new'), new_parking_path, class: "btn btn-primary"
