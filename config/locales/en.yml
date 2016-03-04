@@ -21,3 +21,32 @@
 
 en:
   hello: "Hello world"
+  crud:
+    show: Show
+    edit: Edit
+    delete: Remove
+  parkings:
+    title: Parkings
+    city: City
+    places: Places
+    hour_price: Hour Price
+    day_price: Day price
+    rent_place: Rent a place
+    add_new: Add a new parking
+  cars:
+    title: Cars
+    model: Model
+    registration: Registration number
+    add_new: Add new car
+  place_rents:
+    title: Place rents
+    start_date: Start date
+    end_date: End date
+    parking: Parking
+    car: Car
+    price: Price
+  search:
+    btn: Search
+
+
+

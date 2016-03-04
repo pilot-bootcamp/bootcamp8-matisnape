@@ -1,0 +1,44 @@
+pl:
+  hello: "Hello world"
+  crud:
+    show: Pokaż
+    edit: Edytuj
+    delete: Usuń
+  user:
+    log_in: Zaloguj
+    log_out: Wyloguj
+    logged_in_as: "Zalogowany jako:"
+    not_loggedin: |
+      Jesteś
+      niezalogowany
+    register: Zarejestruj się
+    form:
+      register_title: Rejestracja
+      email: "Email:"
+      password: "Hasło:"
+      password_confirmation: "Potwierdzenie hasła:"
+      first_name: Imię
+      last_name: Nazwisko
+      register_btn: Zarejestruj
+  parkings:
+    title: Parkingi
+    city: Miasto
+    places: Liczba miejsc
+    hour_price: Cena za godzinę
+    day_price: Cena za dzień
+    rent_place: Zarezerwuj miejsce
+    add_new: Dodaj nowy parking
+  cars:
+    title: Samochody
+    model: Model
+    registration: Numer rejestracyjny
+    add_new: Dodaj nowy samochód
+  place_rents:
+    title: Rezerwacje miejsc
+    start_date: Data początkowa
+    end_date: Data zakończenia
+    parking: Parking
+    car: Samochód
+    price: Cena rezerwacji
+  search:
+    btn: Szukaj
