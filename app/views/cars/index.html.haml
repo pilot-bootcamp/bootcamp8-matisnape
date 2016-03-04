@@ -1,9 +1,9 @@
-%h1 Cars
+%h1= t('cars.title')
 %table.table.table-striped
   %thead
     %tr
-      %th Registration number
-      %th Model
+      %th= t('cars.registration')
+      %th= t('cars.model')
       %th
   %tbody
     - @cars.each do |car|
@@ -12,8 +12,8 @@
         %td= car.model
         %td
           .btn-group.pull-right
-            = link_to "Show", car, class: "btn btn-info"
-            = link_to "Edit", edit_car_path(car), class: "btn btn-default"
-            = link_to "Remove", car, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }
+            = link_to t('crud.show'), car, class: "btn btn-info"
+            = link_to t('crud.edit'), edit_car_path(car), class: "btn btn-default"
+            = link_to t('crud.delete'), car, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }
 %br/
-= link_to "Add new car", new_car_path
+= link_to t('cars.add_new'), new_car_path

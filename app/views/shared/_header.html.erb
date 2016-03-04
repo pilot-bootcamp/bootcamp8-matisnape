@@ -2,16 +2,16 @@
   <div class="container">
     <nav>
       <ul class="nav navbar-nav navbar-right nav-item">
-        <li><%= link_to "Parkings", parkings_path %></li>
+        <li><%= link_to t('parkings.title'), parkings_path %></li>
         <% if current_person.present? %>
-        <li><%= link_to "Cars", cars_path %></li>
-        <li><%= link_to "Place rents", place_rents_path %></li>
-        <li>Logged in as: <br /><%= current_person.full_name %></li>
-        <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <li><%= link_to t('cars.title'), cars_path %></li>
+        <li><%= link_to t('place_rents.title'), place_rents_path %></li>
+        <li><%= t('user.logged_in_as') %> <br /><%= current_person.full_name %></li>
+        <li><%= link_to t('user.log_out'), logout_path, method: :delete %></li>
         <% else %>
-        <li>You're not<br /> logged in</li>
-        <li><%= link_to "Log in", login_path %></li>
-        <li><%= link_to "Register", register_path %></li>
+        <li><a><%= t('user.not_loggedin') %></a></li>
+        <li><%= link_to t('user.log_in'), login_path %></li>
+        <li><%= link_to t('user.register'), register_path %></li>
         <% end %>
       </ul>
     </nav>

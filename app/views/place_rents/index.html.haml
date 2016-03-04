@@ -1,12 +1,12 @@
-%h1 Place rents
+%h1= t('place_rents.title')
 %table.table.table-striped
   %thead
     %tr
-      %th Start date
-      %th End date
-      %th Parking
-      %th Car
-      %th Price of place rent
+      %th= t('place_rents.start_date')
+      %th= t('place_rents.end_date')
+      %th= t('place_rents.parking')
+      %th= t('place_rents.car')
+      %th= t('place_rents.price')
       %th
   %tbody
     - @place_rents.each do |place_rent|
@@ -18,5 +18,5 @@
         %td= place_rent.price
         %td
           .btn-group.pull-right
-            = link_to "Show", place_rent, class: "btn btn-info"
+            = link_to t('crud.show'), place_rent, class: "btn btn-info"
 %br/
