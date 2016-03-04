@@ -25,6 +25,22 @@ en:
     show: Show
     edit: Edit
     delete: Remove
+  user:
+    log_in: Log in
+    log_out: Log out
+    logged_in_as: "You're logged in as:"
+    not_loggedin: |
+      You're not
+      logged in
+    register: Register
+    form:
+      register_title: Register
+      email: "Enter email:"
+      password: "Enter password:"
+      password_confirmation: "Enter password confirmation:"
+      first_name: "Enter first name:"
+      last_name: "Enter last name:"
+      register_btn: Register
   parkings:
     title: Parkings
     city: City
