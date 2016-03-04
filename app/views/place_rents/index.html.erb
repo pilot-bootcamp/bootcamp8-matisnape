@@ -1,6 +1,6 @@
 <h1>Place rents</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Start date</th>
@@ -21,10 +21,8 @@
       <td><%= link_to place_rent.car.display_car,
                       car_path(place_rent.car) %></td>
       <td><%= place_rent.price %></td>
-      <td><%= link_to "Show", place_rent %></td>
+      <td><%= link_to "Show", place_rent, class: "btn btn-default" %></td>
     </tr>
     <% end %>
   </tbody>
 </table><br />
-
-<%= link_to "Go to parkings list", parkings_path %>
