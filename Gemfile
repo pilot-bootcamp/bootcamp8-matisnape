@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rubocop'
 gem 'bootstrap-sass'
 gem 'haml'
+gem 'i18n'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

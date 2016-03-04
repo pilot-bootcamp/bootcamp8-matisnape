@@ -208,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   haml
+  i18n
   jbuilder (~> 2.0)
   jquery-rails
   minitest-rails
