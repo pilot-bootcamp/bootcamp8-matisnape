@@ -68,13 +68,13 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       fill_in "Enter password confirmation:", with: "password"
       fill_in "Enter first name:", with: "Teresa"
       fill_in "Enter last name:", with: "Kowalska"
-      click_button "Submit"
+      click_button "Register"
       assert has_content? "Congratz on signing up! Now you can log in"
       assert Account.find_by(email: "registeruser@example.com").present?
     end
 
     test "invalid signup" do
-      click_button "Submit"
+      click_button "Register"
       assert has_content? "Cannot register because of reasons."
     end
   end

@@ -22,7 +22,7 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
       sign_in("nocar@example.com", "password")
       click_link "Rent a place", match: :first
       assert has_content? "You can't create a place rent without having any car. Add a car first."
-      assert_equal current_path, new_car_path
+      assert_equal new_car_path, current_path
     end
 
     describe "viewing place rents index" do

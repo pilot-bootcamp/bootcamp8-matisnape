@@ -26,7 +26,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     end
 
     it "user sees error message when trying to go to a nonexistent parking page" do
-      visit parking_path("bjh")
+      visit parking_path(id: "bjh")
       assert has_content? "There's no such parking"
     end
 

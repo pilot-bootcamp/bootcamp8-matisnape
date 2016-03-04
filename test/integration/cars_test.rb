@@ -27,7 +27,7 @@ class CarsTest < ActionDispatch::IntegrationTest
     end
 
     test "user sees error message when trying to go to a nonexistent car page" do
-      visit car_path("bjh")
+      visit car_path(id: "bjh")
       assert has_content? "There's no such car"
     end
   end
