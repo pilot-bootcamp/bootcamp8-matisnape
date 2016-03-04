@@ -13,6 +13,11 @@
         <li><%= link_to t('user.log_in'), login_path %></li>
         <li><%= link_to t('user.register'), register_path %></li>
         <% end %>
+        <% if I18n.locale == I18n.default_locale %>
+          <li><%= link_to (image_tag("http://www.flags.net/images/smallflags/UNKG0001.GIF")), :locale=>'en'%></li>
+        <% else %>
+          <li><%= link_to (image_tag("http://www.flags.net/images/smallflags/POLA0001.GIF")), :locale=>'pl'%></li>
+        <%end%>
       </ul>
     </nav>
   </div>
