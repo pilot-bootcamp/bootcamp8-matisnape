@@ -16,6 +16,10 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  Capybara::Webkit.configure do |config|
+    config.block_unknown_urls
+  end
+
   self.use_transactional_fixtures = false
 
   setup do
