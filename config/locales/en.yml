@@ -28,7 +28,7 @@ en:
   user:
     log_in: Log in
     log_out: Log out
-    logged_in_as: "You're logged in as:"
+    logged_in_as: "Logged in as:"
     not_loggedin: |
       You're not
       logged in
@@ -48,7 +48,7 @@ en:
     hour_price: Hour Price
     day_price: Day price
     rent_place: Rent a place
-    add_new: Add a new parking
+    add_new: Add new parking
   cars:
     title: Cars
     model: Model
@@ -60,7 +60,7 @@ en:
     end_date: End date
     parking: Parking
     car: Car
-    price: Price
+    price: Price of place rent
   search:
     btn: Search
 
