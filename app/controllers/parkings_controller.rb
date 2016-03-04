@@ -4,7 +4,7 @@ class ParkingsController < ApplicationController
   skip_before_filter :require_login, except: [:new, :create, :edit, :destroy]
 
   def index
-    @parkings = Parking.search(params[:query])
+    @parkings = Parking.paginate(page: params[:page], per_page: 5).search(params[:query])
     flash[:error] = "There are no search results!" if @parkings.empty?
   end
 
