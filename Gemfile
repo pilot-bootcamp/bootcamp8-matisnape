@@ -31,6 +31,7 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'i18n'
 gem 'newrelic_rpm'
+gem 'will_paginate', '~> 3.0.6'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
