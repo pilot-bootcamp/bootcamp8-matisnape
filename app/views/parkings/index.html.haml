@@ -1,0 +1,25 @@
+%h1 Parkings
+= render partial: "search"
+%table.table.table-striped
+  %thead
+    %tr
+      %th City
+      %th Places
+      %th Hour price
+      %th Day price
+      %th
+  %tbody
+    - @parkings.each do |parking|
+      %tr
+        %td= parking.address.try(:city)
+        %td= parking.places
+        %td= parking.hour_price
+        %td= parking.day_price
+        %td
+          .btn-group.pull-right
+            = link_to "Rent a place", new_parking_place_rent_path(parking), class: "btn btn-primary"
+            = link_to "Show", parking, class: "btn btn-info"
+            = link_to "Edit", edit_parking_path(parking), class: "btn btn-default"
+            = link_to "Remove", parking, class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }
+%br/
+= link_to "Add new parking", new_parking_path, class: "btn btn-primary"
