@@ -30,6 +30,7 @@ gem 'rubocop'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'i18n'
+gem 'newrelic_rpm'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
