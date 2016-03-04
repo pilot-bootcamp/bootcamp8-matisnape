@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
-  scope "(:locale)", :locale => /en|pl/ do
-    root 'parkings#index'
-    get    'login'   => 'sessions#new'
-    post   'login'   => 'sessions#create'
-    delete 'logout'  => 'sessions#destroy'
-    get    'register'  => 'accounts#new'
-    get '/:locale' => "parkings#index"
+  root 'parkings#index'
 
-    resources :parkings do
-      resources :place_rents, only: [:new, :create]
-    end
-    resources :place_rents, only: [:index, :show]
-    resources :cars
-    resources :accounts, except: [:show, :index]
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+  get    'register'  => 'accounts#new'
+
+  resources :parkings do
+    resources :place_rents, only: [:new, :create]
   end
+  resources :place_rents, only: [:index, :show]
+  resources :cars
+  resources :accounts, except: [:show, :index]
 end
