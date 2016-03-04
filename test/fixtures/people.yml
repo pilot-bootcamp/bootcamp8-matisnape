@@ -7,3 +7,7 @@ one:
 two:
   first_name: Janusz
   last_name: Ygrekowski
+
+no_cars:
+  first_name: Tomasz
+  last_name: Bezsamochodowy

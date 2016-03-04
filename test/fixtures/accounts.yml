@@ -10,3 +10,8 @@ two:
   email: admin@example.com
   password_digest: <%= BCrypt::Password.create('password123') %>
   person: two
+
+no_car:
+  email: nocar@example.com
+  password_digest: <%= BCrypt::Password.create('password') %>
+  person: no_cars

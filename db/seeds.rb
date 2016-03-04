@@ -14,6 +14,7 @@ Account.delete_all
 
 person1 = Person.create!(first_name: 'Anna', last_name: 'Nowak')
 person2 = Person.create!(first_name: 'Janusz', last_name: 'Ygrekowski')
+person3 = Person.create!(first_name: 'Tomasz', last_name: 'Kowalski')
 car1 = Car.create!(registration_number: 'PZ12345', model: 'Fiat Punto', owner: person1)
 car2 = Car.create!(registration_number: 'WE65432', model: 'Ford Escort', owner: person2)
 address1 = Address.create!(city: 'Poznań', street: 'Św. Marcin', zip_code: '61-248')
@@ -25,3 +26,4 @@ place_rent2 = PlaceRent.create!(starts_at: '2016-02-24 10:15:34', ends_at: '2016
 place_rent3 = PlaceRent.create!(starts_at: '2016-01-24 10:15:34', ends_at: '2017-02-24 18:15:34', parking: parking1, car: car1)
 account1 = Account.create!(email: 'anna.nowak@netguru.pl', password: 'password', person: person1)
 account2 = Account.create!(email: 'admin@example.com', password: 'password123', person: person2)
+account3 = Account.create!(email: 'nocar@example.com', password: 'password', person: person3)
