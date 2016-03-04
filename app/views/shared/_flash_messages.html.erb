@@ -1,11 +1,3 @@
-<% if flash[:error] %>
-  <div class="alert alert-danger"><%= flash[:error] %></div><br />
-<% end %>
-
-<% if flash[:success] %>
-  <div class="alert alert-success"><%= flash[:success] %></div><br />
-<% end %>
-
-<% if flash[:notice] %>
-  <div class="alert alert-success"><%= flash[:notice] %></div><br />
+<% flash.each do |type, message| %>
+  <div class="alert alert-<%= mapping[type] %>"><%= message %></div><br />
 <% end %>
