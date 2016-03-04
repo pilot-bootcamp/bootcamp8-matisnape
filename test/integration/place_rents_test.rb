@@ -6,10 +6,8 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
   end
 
   describe "logged in user" do
-    setup { sign_in("anna.nowak@netguru.pl", "password") }
-
     test "user adds a new place rent successfully with valid data" do
-      visit parkings_path
+      sign_in("anna.nowak@netguru.pl", "password")
       click_link "Rent a place", match: :first
       select "Fiat Panda PZ12345", from: "Select car:"
       select_date_and_time(DateTime.new(2011, 11, 19, 8, 37), from: :place_rent_starts_at)
@@ -20,10 +18,18 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
         Fiat Panda PZ12345"
     end
 
-    # test missing for checking place rents if current user has no cars
+    test "user without any cars cannot create a place rent" do
+      sign_in("nocar@example.com", "password")
+      click_link "Rent a place", match: :first
+      assert has_content? "You can't create a place rent without having any car. Add a car first."
+      assert_equal current_path, new_car_path
+    end
 
     describe "viewing place rents index" do
-      before { visit place_rents_path }
+      before do
+        sign_in("anna.nowak@netguru.pl", "password")
+        visit place_rents_path
+      end
 
       test "user views a list of place rents" do
         assert has_content? "2016-01-24 08:15:34 UTC 2016-01-24 18:15:34 UTC 61-248 Poznań, Św. Marcin
@@ -40,7 +46,10 @@ class PlaceRentsTest < ActionDispatch::IntegrationTest
     end
 
     describe "viewing place rent details" do
-      before { visit place_rent_path(place_rents(:one)) }
+      before do
+        sign_in("anna.nowak@netguru.pl", "password")
+        visit place_rent_path(place_rents(:one))
+      end
 
       test "user can view a single place rent" do
         assert has_content? "Fiat Panda PZ12345"
