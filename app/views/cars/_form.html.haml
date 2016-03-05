@@ -1,0 +1,11 @@
+= render 'shared/error_messages', object: @car
+= form_for @car do |f|
+  = f.label :registration_number, "Enter registration number:"
+  = f.text_field :registration_number
+  %br/
+  = f.label :model, "Enter model:"
+  = f.text_field :model
+  %br/
+  = f.submit "Submit"
+  %br/
+%br/

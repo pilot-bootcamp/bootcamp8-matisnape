@@ -1,0 +1,18 @@
+%h1 Car
+%table.table.table-striped
+  %thead
+    %tr
+      %th Registration number
+      %th Model
+      %th
+      %th
+      %th
+  %tbody
+    %tr
+      %td= @car.registration_number
+      %td= @car.model
+      %td= link_to "Show", @car
+      %td= link_to "Edit", edit_car_path(@car)
+      %td= link_to "Remove", @car, method: :delete, data: { confirm: "Are you sure?" }
+%br/
+= link_to "Go back to all", cars_path

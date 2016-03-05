@@ -1,0 +1,43 @@
+= render 'shared/error_messages', object: @parking
+= form_for @parking, html: { class: "form-horizontal center" } do |f|
+  = f.fields_for :address_attributes, @parking.address do |address_fields|
+    .form-group
+      = address_fields.label :city, "Enter city:", class: "col-md-4 control-label"
+      .col-md-8
+        = address_fields.text_field :city
+        %br/
+    .form-group
+      = address_fields.label :street, "Enter street:", class: "col-md-4 control-label"
+      .col-md-8
+        = address_fields.text_field :street
+        %br/
+    .form-group
+      = address_fields.label :zip_code, "Enter zipcode:", class: "col-md-4 control-label"
+      .col-md-8
+        = address_fields.text_field :zip_code
+        %br/
+  .form-group
+    = f.label :places, "Enter number of places available:", class: "col-md-4 control-label"
+    .col-md-8
+      = f.text_field :places
+      %br/
+  .form-group
+    = f.label :hour_price, "Enter price per hour:", class: "col-md-4 control-label"
+    .col-md-8
+      = f.text_field :hour_price
+      %br/
+  .form-group
+    = f.label :day_price, "Enter price per day:", class: "col-md-4 control-label"
+    .col-md-8
+      = f.text_field :day_price
+      %br/
+  .form-group
+    = f.label :kind, "Enter kind:", class: "col-md-4 control-label"
+    .col-md-8
+      = f.select :kind do
+        = options_for_select %w(outdoor indoor private street), @parking.kind
+      %br/
+  .form-group
+    = f.submit "Submit", class: "btn btn-primary"
+    %br/
+%br/

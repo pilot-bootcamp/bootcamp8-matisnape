@@ -1,0 +1,9 @@
+- if object.errors.any?
+  .alert.alert-danger
+    %h2
+      = pluralize(object.errors.count, "error")
+      prohibited this from being changed:
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li= msg
+%br/
