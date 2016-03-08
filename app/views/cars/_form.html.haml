@@ -1,11 +1,17 @@
 = render 'shared/error_messages', object: @car
-= form_for @car do |f|
-  = f.label :registration_number, "Enter registration number:"
-  = f.text_field :registration_number
+= form_for @car, html: { class: "form-horizontal center" } do |f|
+  .form-group
+    = f.label :registration_number, t('cars.form.registration'), class: "col-md-4 control-label"
+    .col-md-8
+      = f.text_field :registration_number
   %br/
-  = f.label :model, "Enter model:"
-  = f.text_field :model
+  .form-group
+    = f.label :model, t('cars.form.model'), class: "col-md-4 control-label"
+    .col-md-8
+      = f.text_field :model
   %br/
-  = f.submit "Submit"
+  .form-group
+    .col-md-8.col-md-offset-4
+      = f.submit t('buttons.submit'), class: "btn btn-primary"
   %br/
 %br/

@@ -1,4 +1,4 @@
-%h1 Add new place rent
+%h1= t('parkings.rent_place')
 = render 'shared/error_messages', object: @place_rent
 = render partial: "form"
-= link_to "Go back", parkings_path
+= link_to t('buttons.back'), root_path

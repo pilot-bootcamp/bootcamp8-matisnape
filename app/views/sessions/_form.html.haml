@@ -1,6 +1,12 @@
-= form_for :session, url: login_path do |f|
-  = f.label :email, "Email:"
-  = f.email_field :email
-  = f.label :password, "Password:"
-  = f.password_field :password
-  = f.submit "Sign in"
+= form_for :session, url: login_path, html: { class: "form-horizontal center" }  do |f|
+  .form-group
+    = f.label :email, t('user.form.email'), class: "col-md-4 control-label"
+    .col-md-8
+      = f.email_field :email
+  .form-group
+    = f.label :password, t('user.form.password'), class: "col-md-4 control-label"
+    .col-md-8
+      = f.password_field :password
+  .form-group
+    .col-md-8.col-md-offset-4
+      = f.submit t('user..sign_in'), class: "btn btn-primary"

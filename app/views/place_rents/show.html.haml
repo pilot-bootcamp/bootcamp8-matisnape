@@ -2,11 +2,11 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Start date
-      %th End date
-      %th Parking
-      %th Car
-      %th Price of place rent
+      %th= t('place_rents.start_date')
+      %th= t('place_rents.end_date')
+      %th= t('place_rents.parking')
+      %th= t('place_rents.car')
+      %th= t('place_rents.price')
   %tbody
     %tr
       %td= @place_rent.starts_at
@@ -15,4 +15,4 @@
       %td= link_to "#{@place_rent.car.model} #{@place_rent.car.registration_number}", car_path(@place_rent.car)
       %td= @place_rent.price
 %br/
-= link_to "Go back", place_rents_path
+= link_to t('buttons.back'), place_rents_path
