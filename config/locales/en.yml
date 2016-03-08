@@ -21,13 +21,18 @@
 
 en:
   hello: "Hello world"
+  buttons:
+    submit: Submit
+    back: Go back
   crud:
     show: Show
     edit: Edit
     delete: Remove
+    confirmation: Are you sure?
   user:
     log_in: Log in
     log_out: Log out
+    sign_in: Sign in
     logged_in_as: "Logged in as:"
     not_loggedin: |
       You're not
@@ -35,8 +40,8 @@ en:
     register: Register
     form:
       register_title: Register
-      email: "Enter email:"
-      password: "Enter password:"
+      email: "Email:"
+      password: "Password:"
       password_confirmation: "Enter password confirmation:"
       first_name: "Enter first name:"
       last_name: "Enter last name:"
@@ -49,11 +54,23 @@ en:
     day_price: Day price
     rent_place: Rent a place
     add_new: Add new parking
+    form:
+      city: "Enter city:"
+      street: "Enter street:"
+      zip_code: "Enter zipcode:"
+      places: "Enter number of places available:"
+      price_hour: "Enter price per hour:"
+      price_day: "Enter price per day:"
+      kind: "Enter kind:"
   cars:
     title: Cars
     model: Model
     registration: Registration number
     add_new: Add new car
+    edit_car: Edit Car
+    form:
+      registration: "Enter registration number:"
+      model: "Enter model:"
   place_rents:
     title: Place rents
     start_date: Start date
@@ -61,7 +78,18 @@ en:
     parking: Parking
     car: Car
     price: Price of place rent
+    form:
+      select_car: "Select car:"
+      start_date: "Enter start date:"
+      end_date: "Enter end date:"
   search:
+    private: Private parkings
+    public: Public parkings
+    min_price_day: "Min. price per day:"
+    max_price_day: "Max. price per day:"
+    min_price_hour: "Min. price per hour:"
+    max_price_hour: "Max. price per hour:"
+    city: "Parking city:"
     btn: Search
 
 
