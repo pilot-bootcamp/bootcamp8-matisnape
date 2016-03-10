@@ -35,7 +35,7 @@
     = f.label :kind, t('parkings.form.kind'), class: "col-md-4 control-label"
     .col-md-8
       = f.select :kind do
-        = options_for_select %w(outdoor indoor private street), @parking.kind
+        = options_for_select %w(outdoor indoor private street).map{ |key| t("parkings.kinds.#{key}") }, @parking.kind
       %br/
   .form-group
     .col-md-8.col-md-offset-4
