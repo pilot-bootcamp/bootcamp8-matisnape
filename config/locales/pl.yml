@@ -1,12 +1,25 @@
 pl:
   hello: "Hello world"
+  buttons:
+    submit: Wyślij
+    back: Wróć
   crud:
     show: Pokaż
     edit: Edytuj
     delete: Usuń
+    confirmation: Jesteś pewien?
+  errors:
+    messages:
+      blank: "- pole nie może być puste"
+    valid_error:
+      one: "1 błąd nie pozwolił na zmiany:"
+      two_four: "%{count} błędy nie pozwoliły na zmiany:"
+      other: "%{count} błędów nie pozwoliło na zmiany:"
+    restricted: Najpierw musisz się zalogować.
   user:
     log_in: Zaloguj
     log_out: Wyloguj
+    sign_in: Zaloguj
     logged_in_as: "Zalogowany jako:"
     not_loggedin: |
       Jesteś
@@ -20,19 +33,54 @@ pl:
       first_name: Imię
       last_name: Nazwisko
       register_btn: Zarejestruj
+      success_msg: Grats, udało Ci się zrejestrować! Teraz możesz się zalogować.
+      failed_msg: Niestety, nie mogliśmy Cię zarejestrować.
+      login_success: Zostałeś zalogowany.
+      login_fail: Twoje dane nie są prawidłowe Spróbuj jeszcze raz.
+      logout_success: Zostałeś wylogowany.
   parkings:
     title: Parkingi
     city: Miasto
     places: Liczba miejsc
     hour_price: Cena za godzinę
     day_price: Cena za dzień
+    kinds:
+      outdoor: zewnętrzny
+      indoor: w pomieszczeniu
+      private: prywatny
+      street: na ulicy
     rent_place: Zarezerwuj miejsce
     add_new: Dodaj nowy parking
+    edit_parking: Edytuj parking
+    not_found: Nie ma takiego parkingu
+    deleted: Parking usunięty
+    form:
+      city: "Miasto:"
+      street: "Ulica:"
+      zip_code: "Kod pocztowy:"
+      places: "Liczba dostępnych miejsc:"
+      price_hour: "Cena za godzinę:"
+      price_day: "Cena za dzień:"
+      kind: "Wybierz rodzaj:"
+      success_msg: Parking został zapisany.
+      failed_msg: Niestety, nie mogliśmy zapisać parkingu.
+      failed_update: Niestety, nie mogliśmy zaktualizować parkingu.
+      delete_success: Parking został usunięty.
+      delete_fail: Niestety, nie mogliśmy usunąć parkingu.
   cars:
     title: Samochody
     model: Model
     registration: Numer rejestracyjny
     add_new: Dodaj nowy samochód
+    edit_car: Edytuj samochód
+    not_found: Nie ma takiego samochodu
+    form:
+      registration: "Podaj numer rejestracyjny:"
+      model: "Podaj model:"
+      success_msg: Samochód został zapisany.
+      failed_msg: Niestety, nie mogliśmy zapisać samochodu.
+      delete_success: Samochód został usunięty.
+      delete_fail: Niestety, nie mogliśmy usunąć samochodu.
   place_rents:
     title: Rezerwacje miejsc
     start_date: Data początkowa
@@ -40,5 +88,22 @@ pl:
     parking: Parking
     car: Samochód
     price: Cena rezerwacji
+    not_found: Nie ma takiej rezerwacji.
+    form:
+      select_car: "Wybierz samochód:"
+      start_date: "Podaj datę początkową:"
+      end_date: "Podaj datę zakończoną:"
+      car_first: Nie możesz zarezerwować parkingu bez podania samochodu. Dodaj najpierw samochód.
+      success_msg: Rezerwacja została zapisana.
+      failed_msg: Niestety, nie mogliśmy zapisać rezerwacji.
   search:
+    title: Szukaj
+    private: Prywatne parkingi
+    public: Publiczne parkingi
+    min_price_day: "Min. cena za dzień:"
+    max_price_day: "Max. cena za dzień:"
+    min_price_hour: "Min. cena za godzinę:"
+    max_price_hour: "Max. cena za godzinę:"
+    city: "Miasto parkingu:"
     btn: Szukaj
+    no_results: Brak wyników.
