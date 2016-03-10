@@ -1,8 +1,12 @@
 - if object.errors.any?
   .alert.alert-danger
     %h2
-      = pluralize(object.errors.count, "error")
-      prohibited this from being changed:
+      - if object.errors.count == 1
+        = t('errors.valid_error.one')
+      - if object.errors.count >= 1 && object.errors.count <= 4
+        = t('errors.valid_error.two_four', count: object.errors.count)
+      - else
+        = t('errors.valid_error.other', count: object.errors.count)
     %ul
       - object.errors.full_messages.each do |msg|
         %li= msg

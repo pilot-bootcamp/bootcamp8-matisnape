@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   def require_login(return_point = request.url)
     if current_person.blank?
       set_return_point(return_point)
-      flash[:error] = "You have to log in first"
+      flash[:error] = t('errors.restricted')
       redirect_to login_path
     end
   end

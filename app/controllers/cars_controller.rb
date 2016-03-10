@@ -16,10 +16,10 @@ class CarsController < ApplicationController
   def create
     @car = current_person.cars.build(car_params)
     if car.save
-      flash[:success] = "Car has been saved correctly"
+      flash[:success] = t('cars.form.success_msg')
       redirect_to cars_path
     else
-      flash.now[:error] = "Cannot create car because of reasons."
+      flash.now[:error] = t('cars.form.failed_msg')
       render 'new'
     end
   end
@@ -30,19 +30,19 @@ class CarsController < ApplicationController
 
   def update
     if car.update(car_params)
-      flash[:success] = "Car has been saved correctly"
+      flash[:success] = t('cars.form.success_msg')
       redirect_to @car
     else
-      flash.now[:error] = "Cannot update car because of reasons."
+      flash.now[:error] = t('cars.form.failed_msg')
       render 'edit'
     end
   end
 
   def destroy
     if car.destroy
-      flash[:success] = "Car deleted successfully"
+      flash[:success] = t('cars.form.delete_success')
     else
-      flash[:error] = "Cannot delete this car"
+      flash[:error] = t('cars.form.delete_fail')
     end
     redirect_to cars_path
   end
@@ -58,7 +58,7 @@ class CarsController < ApplicationController
   end
 
   def car_not_found
-    flash[:error] = "There's no such car"
+    flash[:error] = t('cars.not_found')
     redirect_to cars_path
   end
 end

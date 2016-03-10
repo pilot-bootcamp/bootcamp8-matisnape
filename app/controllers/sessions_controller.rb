@@ -13,16 +13,16 @@ class SessionsController < ApplicationController
     user = Account.authenticate(account_params[:email], account_params[:password])
     if user.present?
       session[:current_user_id] = user.id
-      redirect_to return_point, notice: "You have successfully logged in."
+      redirect_to return_point, notice: t('user.form.login_success')
     else
-      flash.now[:error] = "Your credentials are invalid. Try again"
+      flash.now[:error] = t('user.form.login_fail')
       render 'new'
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_url, notice: "You have successfully logged out."
+    redirect_to root_url, notice: t('user.form.logout_success')
   end
 
   private

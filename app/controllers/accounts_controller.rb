@@ -12,10 +12,10 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      flash[:success] = "Congratz on signing up! Now you can log in"
+      flash[:success] = t('user.form.success_msg')
       redirect_to login_path
     else
-      flash.now[:error] = "Cannot register because of reasons."
+      flash.now[:error] = t('user.form.failed_msg')
       render 'new'
     end
   end

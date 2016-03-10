@@ -5,7 +5,7 @@ class ParkingsController < ApplicationController
 
   def index
     @parkings = Parking.paginate(page: params[:page], per_page: 5).search(params[:query])
-    flash[:error] = "There are no search results!" if @parkings.empty?
+    flash[:error] = t('search.no_results') if @parkings.empty?
   end
 
   def show
@@ -19,10 +19,10 @@ class ParkingsController < ApplicationController
   def create
     @parking = current_person.parkings.build(parking_params)
     if @parking.save
-      flash[:success] = "Parking has been saved correctly"
+      flash[:success] = t('parkings.form.success_msg')
       redirect_to root_path
     else
-      flash.now[:error] = "Cannot create parking because of reasons."
+      flash.now[:error] = t('parkings.form.failed_msg')
       render 'new'
     end
   end
@@ -33,19 +33,19 @@ class ParkingsController < ApplicationController
 
   def update
     if parking.update(parking_params)
-      flash[:success] = "Parking has been saved correctly"
+      flash[:success] = t('parkings.form.success_msg')
       redirect_to @parking
     else
-      flash.now[:error] = "Cannot update parking because of reasons."
+      flash.now[:error] = t('parkings.form.failed_update')
       render 'edit'
     end
   end
 
   def destroy
     if parking.destroy
-      flash[:success] = "Parking deleted successfully"
+      flash[:success] = t('parkings.form.delete_success')
     else
-      flash[:error] = "Cannot delete parking"
+      flash[:error] = t('parkings.form.delete_fail')
     end
     redirect_to root_path
   end
@@ -65,7 +65,7 @@ class ParkingsController < ApplicationController
   end
 
   def parking_not_found
-    flash[:error] = "There's no such parking"
+    flash[:error] = t('parkings.not_found')
     redirect_to parkings_path
   end
 end
