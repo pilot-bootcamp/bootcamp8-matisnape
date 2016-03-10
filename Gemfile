@@ -30,6 +30,7 @@ gem 'rubocop'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'i18n'
+gem 'rails-i18n'
 gem 'newrelic_rpm'
 gem 'will_paginate', '~> 3.0.6'
 
