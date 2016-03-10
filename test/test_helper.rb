@@ -15,6 +15,7 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  include AbstractController::Translation
 
   Capybara::Webkit.configure do |config|
     config.block_unknown_urls
