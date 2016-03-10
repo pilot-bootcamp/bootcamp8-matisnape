@@ -33,7 +33,7 @@ class CarsController < ApplicationController
       flash[:success] = t('cars.form.success_msg')
       redirect_to @car
     else
-      flash.now[:error] = t('cars.form.failed_msg')
+      flash.now[:error] = t('cars.form.failed_update')
       render 'edit'
     end
   end
