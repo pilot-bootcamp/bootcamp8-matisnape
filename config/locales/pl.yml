@@ -15,6 +15,7 @@ pl:
       one: "1 błąd nie pozwolił na zmiany:"
       two_four: "%{count} błędy nie pozwoliły na zmiany:"
       other: "%{count} błędów nie pozwoliło na zmiany:"
+      zip_code: Kod pocztowy powinien mieć format XX-XXX
     restricted: Najpierw musisz się zalogować.
   user:
     log_in: Zaloguj
@@ -79,6 +80,7 @@ pl:
       model: "Podaj model:"
       success_msg: Samochód został zapisany.
       failed_msg: Niestety, nie mogliśmy zapisać samochodu.
+      failed_update: Niestety, nie mogliśmy zaktualizować samochodu.
       delete_success: Samochód został usunięty.
       delete_fail: Niestety, nie mogliśmy usunąć samochodu.
   place_rents:

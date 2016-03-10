@@ -15,6 +15,7 @@ en:
       one: "1 error prohibited this from being changed:"
       two_four: "%{count} errors prohibited this from being changed:"
       other: "%{count} errors prohibited this from being changed:"
+      zip_code: Zip code format should be XX-XXX
     restricted: You have to log in first.
   user:
     log_in: Log in
@@ -64,7 +65,7 @@ en:
       kind: "Enter kind:"
       success_msg: Car park has been saved correctly.
       failed_msg: Cannot create car park because of reasons.
-      failed_update: "Cannot update car park because of reasons."
+      failed_update: Cannot update car park because of reasons.
       delete_success: Car deleted successfully.
       delete_fail: Cannot delete this car park.
   cars:
@@ -79,6 +80,7 @@ en:
       model: "Enter model:"
       success_msg: Car has been saved correctly.
       failed_msg: Cannot create car because of reasons.
+      failed_update: Cannot update car because of reasons.
       delete_success: Car deleted successfully
       delete_fail: Cannot delete this car
   place_rents:
