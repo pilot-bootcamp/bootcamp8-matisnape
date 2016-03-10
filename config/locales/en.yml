@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
   buttons:
@@ -29,6 +8,14 @@ en:
     edit: Edit
     delete: Remove
     confirmation: Are you sure?
+  errors:
+    messages:
+      blank: can't be blank
+    valid_error:
+      one: "1 error prohibited this from being changed:"
+      two_four: "%{count} errors prohibited this from being changed:"
+      other: "%{count} errors prohibited this from being changed:"
+    restricted: You have to log in first.
   user:
     log_in: Log in
     log_out: Log out
@@ -46,14 +33,27 @@ en:
       first_name: "Enter first name:"
       last_name: "Enter last name:"
       register_btn: Register
+      success_msg: Congratz on signing up! Now you can log in.
+      failed_msg: Cannot register because of reasons.
+      login_success: You have successfully logged in.
+      login_fail: Your credentials are invalid. Try again.
+      logout_success: You have successfully logged out.
   parkings:
-    title: Parkings
+    title: Car parks
     city: City
     places: Places
     hour_price: Hour Price
     day_price: Day price
+    kinds:
+      outdoor: outdoor
+      indoor: indoor
+      private: private
+      street: street
     rent_place: Rent a place
-    add_new: Add new parking
+    add_new: Add new car park
+    edit_parking: Edit car park
+    not_found: There's no such car park
+    deleted: Deleted car park
     form:
       city: "Enter city:"
       street: "Enter street:"
@@ -62,35 +62,51 @@ en:
       price_hour: "Enter price per hour:"
       price_day: "Enter price per day:"
       kind: "Enter kind:"
+      success_msg: Car park has been saved correctly.
+      failed_msg: Cannot create car park because of reasons.
+      failed_update: "Cannot update car park because of reasons."
+      delete_success: Car deleted successfully.
+      delete_fail: Cannot delete this car park.
   cars:
     title: Cars
     model: Model
     registration: Registration number
     add_new: Add new car
     edit_car: Edit Car
+    not_found: There's no such car
     form:
       registration: "Enter registration number:"
       model: "Enter model:"
+      success_msg: Car has been saved correctly.
+      failed_msg: Cannot create car because of reasons.
+      delete_success: Car deleted successfully
+      delete_fail: Cannot delete this car
   place_rents:
     title: Place rents
     start_date: Start date
     end_date: End date
-    parking: Parking
+    parking: Car park
     car: Car
     price: Price of place rent
+    not_found: There's no such place rent.
     form:
       select_car: "Select car:"
       start_date: "Enter start date:"
       end_date: "Enter end date:"
+      car_first: You can't create a place rent without having any car. Add a car first.
+      success_msg: Place rent has been saved correctly.
+      failed_msg: Cannot create place rent because of reasons.
   search:
-    private: Private parkings
-    public: Public parkings
+    search: Search
+    private: Private car parks
+    public: Public car parks
     min_price_day: "Min. price per day:"
     max_price_day: "Max. price per day:"
     min_price_hour: "Min. price per hour:"
     max_price_hour: "Max. price per hour:"
-    city: "Parking city:"
+    city: "Car park city:"
     btn: Search
+    no_results: There are no search results!
 
 
 
