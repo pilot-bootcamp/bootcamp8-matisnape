@@ -91,7 +91,7 @@ Rails.application.configure do
     authentication: :plain ,
     address: "smtp.gmail.com" ,
     port: 587,
-    user_name: ENV['SMTP_USER']
+    user_name: ENV['SMTP_USER'],
     password: ENV['SMTP_PASSWORD']
   }
 end
