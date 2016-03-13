@@ -63,7 +63,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
       end
 
       test "user fails to add a new parking with invalid data" do
-        click_on "Submit"
+        click_on t('buttons.submit')
         assert has_content? t('parkings.form.failed_msg')
       end
     end
