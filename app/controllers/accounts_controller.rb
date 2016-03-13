@@ -14,6 +14,7 @@ class AccountsController < ApplicationController
     if @account.save
       flash[:success] = t('user.form.success_msg')
       redirect_to login_path
+      UserMailer.welcome_email(account).deliver_now
     else
       flash.now[:error] = t('user.form.failed_msg')
       render 'new'
