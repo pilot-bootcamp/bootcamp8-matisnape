@@ -33,6 +33,7 @@ gem 'i18n'
 gem 'rails-i18n'
 gem 'newrelic_rpm'
 gem 'will_paginate', '~> 3.0.6'
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
