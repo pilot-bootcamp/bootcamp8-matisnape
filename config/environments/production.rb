@@ -77,7 +77,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Rails.application.routes.default_url_options[:host] = Rails.application.secrets.host
+  Rails.application.routes.default_url_options[:host] = ENV['SECRET_HOST']
 
   config.action_mailer.default_url_options = {
     host: Rails.application.secrets.host,
@@ -91,7 +91,7 @@ Rails.application.configure do
     authentication: :plain ,
     address: "smtp.gmail.com" ,
     port: 587,
-    user_name: Rails.application.secrets.smtp_user,
-    password: Rails.application.secrets.smtp_password
+    user_name: ENV['SMTP_USER']
+    password: ENV['SMTP_PASSWORD']
   }
 end
