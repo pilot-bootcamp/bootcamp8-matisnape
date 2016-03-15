@@ -19,6 +19,7 @@ en:
     restricted: You have to log in first.
   user:
     log_in: Log in
+    log_in_fb: Sign in with Facebook
     log_out: Log out
     sign_in: Sign in
     logged_in_as: "Logged in as:"
