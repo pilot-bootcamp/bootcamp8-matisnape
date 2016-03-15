@@ -68,7 +68,7 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
     end
   end
 
-  describe "Sign in" do
+  describe "Sign up" do
     setup { visit register_path }
     test "valid signup information" do
       fill_in t('user.form.email'), with: "registeruser@example.com"
@@ -79,6 +79,11 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       click_button t('user.register')
       assert has_content? t('user.form.success_msg')
       assert Account.find_by(email: "registeruser@example.com").present?
+      mail = ActionMailer::Base.deliveries.last
+      assert_equal 'hello@bookparking.dev', mail['from'].to_s
+      assert_equal 'registeruser@example.com', mail['to'].to_s
+      assert_equal 'Welcome to Bookparking', mail.subject
+      assert_match "Hello Teresa\nYou have successfully signed up", mail.parts.first.body.raw_source
     end
 
     test "invalid signup" do
