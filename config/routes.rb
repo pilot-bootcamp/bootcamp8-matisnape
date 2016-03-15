@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get    'register'  => 'accounts#new'
+  post   '/auth/:provider/callback' => 'sessions#create'
+  post   '/auth/failure' => 'sessions#failure'
 
   resources :parkings do
     resources :place_rents, only: [:new, :create]
