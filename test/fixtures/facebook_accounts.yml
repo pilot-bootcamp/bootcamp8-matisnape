@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  uid: MyString
+dana:
+  uid: '123'
+  person: one
 
-two:
-  uid: MyString
+mulder:
+  uid: '456'
+  person: two
