@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = Account.authenticate(account_params[:email], account_params[:password])
+    if request.env["omniauth.auth"].present?
+      user = FacebookAccount.find_or_create_for_facebook(env["omniauth.auth"])
+    else
+      user = Account.authenticate(account_params[:email], account_params[:password])
+    end
     if user.present?
       session[:current_user_id] = user.id
       redirect_to return_point, notice: t('user.form.login_success')
@@ -23,6 +27,10 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     redirect_to root_url, notice: t('user.form.logout_success')
+  end
+
+  def failure
+    redirect_to root_url, notice: t('user.form.login_fail')
   end
 
   private
