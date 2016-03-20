@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def current_person
     return nil unless session[:current_user_id]
-    @current_user ||= Account.find_by(id: session[:current_user_id]).person
+    @current_user ||= Account.find_by(id: session[:current_user_id]).person ||= FacebookAccount.find_by(id: session[:current_user_id]).person
   end
 
   def show_current_controller
