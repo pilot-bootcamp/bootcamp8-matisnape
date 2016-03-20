@@ -11,6 +11,10 @@ Dir["./test/helpers/**/*.rb"].sort.each { |f| require f }
 
 class ActiveSupport::TestCase
   fixtures :all
+
+  teardown do
+    DatabaseCleaner.clean_with :truncation
+  end
 end
 
 class ActionDispatch::IntegrationTest
