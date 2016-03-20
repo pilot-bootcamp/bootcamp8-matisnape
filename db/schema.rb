@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303134013) do
+ActiveRecord::Schema.define(version: 20160320120533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20160303134013) do
   end
 
   add_index "cars", ["owner_id"], name: "index_cars_on_owner_id", using: :btree
+
+  create_table "facebook_accounts", force: :cascade do |t|
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "facebook_accounts", ["uid"], name: "index_facebook_accounts_on_uid", using: :btree
 
   create_table "parkings", force: :cascade do |t|
     t.integer "places"
