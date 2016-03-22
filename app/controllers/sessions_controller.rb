@@ -10,18 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if request.env["omniauth.auth"].present?
-      user = FacebookAccount.find_or_create_for_facebook(env["omniauth.auth"])
-    else
-      user = Account.authenticate(account_params[:email], account_params[:password])
-    end
-    if user.present?
-      session[:current_user_id] = user.id
-      redirect_to return_point, notice: t('user.form.login_success')
-    else
-      flash.now[:error] = t('user.form.login_fail')
-      render 'new'
-    end
+    authenticate_user
+    check_user_presence
   end
 
   def destroy
@@ -37,5 +27,25 @@ class SessionsController < ApplicationController
 
   def account_params
     params.require(:session).permit(:email, :password)
+  end
+
+  def authenticate_user
+    if request.env["omniauth.auth"].present?
+      @user = FacebookAccount.find_or_create_for_facebook(env["omniauth.auth"])
+      session[:account_type] = "facebook_account"
+    else
+      @user = Account.authenticate(account_params[:email], account_params[:password])
+      session[:account_type] = "account"
+    end
+  end
+
+  def check_user_presence
+    if @user.present?
+      session[:account_id] = @user.id
+      redirect_to return_point, notice: t('user.form.login_success')
+    else
+      flash.now[:error] = t('user.form.login_fail')
+      render 'new'
+    end
   end
 end
