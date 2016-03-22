@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get    'register'  => 'accounts#new'
   get   '/auth/:provider/callback' => 'sessions#create'
   get   '/auth/facebook' => 'sessions#create', as: 'facebook_login'
-  post   '/auth/failure' => 'sessions#failure'
+  get   '/auth/failure' => 'sessions#failure'
 
   resources :parkings do
     resources :place_rents, only: [:new, :create]
