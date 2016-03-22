@@ -17,6 +17,41 @@ class SignInSignOutTest < ActionDispatch::IntegrationTest
       assert_equal current_path, root_path
     end
 
+    describe "Facebook" do
+      setup do
+        OmniAuth.config.test_mode = true
+        OmniAuth.config.add_mock(
+          :facebook,
+          provider: 'facebook',
+          uid: '123545',
+          info:
+            {
+              first_name: 'Facebook',
+              last_name: 'User'
+            }
+        )
+        OmniAuth.config.on_failure = Proc.new { |env|
+          OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+        }
+      end
+
+      test "user can log in with Facebook account" do
+        visit root_path
+        click_link t('user.log_in_fb')
+        assert has_content? t('user.form.login_success')
+        assert has_content? "#{t('user.logged_in_as')} Facebook User"
+      end
+
+      test "user can log in with Facebook but resign during the process" do
+        OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+        visit root_path
+        click_link t('user.log_in_fb')
+        assert has_content? t('user.form.login_fail')
+        assert_not has_content? t('user.logged_in_as')
+        assert has_content? t('user.not_loggedin')
+      end
+    end
+
     test "non-logged in user doesn't see any name on the page" do
       visit login_path
       assert has_content? t('user.not_loggedin')
