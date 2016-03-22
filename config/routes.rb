@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get    'register'  => 'accounts#new'
   get   '/auth/:provider/callback' => 'sessions#create'
+  get   '/auth/facebook' => 'sessions#create', as: 'facebook_login'
   post   '/auth/failure' => 'sessions#failure'
 
   resources :parkings do
