@@ -35,17 +35,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login(return_point = request.url)
-    if current_person.blank?
-      set_return_point(return_point)
-      flash[:error] = t('errors.restricted')
-      redirect_to login_path
-    end
+    return unless current_person.blank?
+    set_return_point(return_point)
+    flash[:error] = t('errors.restricted')
+    redirect_to login_path
   end
 
   def set_return_point(path)
-    if session[:return_point].blank?
-      session[:return_point] = path
-    end
+    session[:return_point] = path if session[:return_point].blank?
   end
 
   def return_point
