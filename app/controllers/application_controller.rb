@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
   def current_person
     return nil if session[:account_id].blank?
     if session[:account_type] == "facebook_account"
-      @current_user ||= FacebookAccount.find_by(id: session[:account_id]).person
+      @current_user ||= FacebookAccount.find_by(id: session[:account_id])&.person
     elsif session[:account_type] == "account"
-      @current_user ||= Account.find_by(id: session[:account_id]).person
+      @current_user ||= Account.find_by(id: session[:account_id])&.person
     end
   end
 
