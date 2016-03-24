@@ -79,6 +79,7 @@ en:
     form:
       registration: "Enter registration number:"
       model: "Enter model:"
+      image: "Upload car image:"
       success_msg: Car has been saved correctly.
       failed_msg: Cannot create car because of reasons.
       failed_update: Cannot update car because of reasons.
