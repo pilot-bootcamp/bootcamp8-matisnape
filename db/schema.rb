@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320204228) do
+ActiveRecord::Schema.define(version: 20160324093319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20160320204228) do
     t.integer  "owner_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "image_uid"
   end
 
+  add_index "cars", ["image_uid"], name: "index_cars_on_image_uid", using: :btree
   add_index "cars", ["owner_id"], name: "index_cars_on_owner_id", using: :btree
 
   create_table "facebook_accounts", force: :cascade do |t|
