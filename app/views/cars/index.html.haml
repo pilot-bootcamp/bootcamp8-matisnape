@@ -4,12 +4,15 @@
     %tr
       %th= t('cars.registration')
       %th= t('cars.model')
+      %th= 'Image'
       %th
   %tbody
     - @cars.each do |car|
       %tr
         %td= car.registration_number
         %td= car.model
+        %td
+          = image_tag car.image.thumb('400x200').url if car.image_stored?
         %td
           .btn-group.pull-right
             = link_to t('crud.show'), car, class: "btn btn-info"
