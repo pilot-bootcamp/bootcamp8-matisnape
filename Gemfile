@@ -37,6 +37,7 @@ gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 gem 'omniauth-facebook'
 gem 'dragonfly', '~> 1.0.12'
 gem 'rack-cache', require: 'rack/cache'
+gem 'dragonfly-s3_data_store'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
