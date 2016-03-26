@@ -36,6 +36,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
 gem 'omniauth-facebook'
 gem 'dragonfly', '~> 1.0.12'
+gem 'rack-cache', require: 'rack/cache'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

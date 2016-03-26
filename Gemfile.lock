@@ -141,6 +141,8 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-cache (1.6.1)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -253,6 +255,7 @@ DEPENDENCIES
   omniauth-facebook
   pg
   pry
+  rack-cache
   rails (= 4.2.5.1)
   rails-i18n
   rails_12factor
