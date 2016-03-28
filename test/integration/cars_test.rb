@@ -40,9 +40,13 @@ class CarsTest < ActionDispatch::IntegrationTest
     test "user adds a new car successfully with valid data" do
       fill_in t('cars.form.registration'), with: "WAW12345"
       fill_in t('cars.form.model'), with: "Syrena Bosto"
+      attach_file t('cars.form.image'),'test/fixtures/images/valid_image.jpg'
       click_on t('buttons.submit')
       assert has_content? t('cars.form.success_msg')
-      assert has_content? "WAW12345 Syrena Bosto"
+      within 'table' do
+        assert has_content? "WAW12345 Syrena Bosto"
+        assert has_selector? 'img'
+      end
     end
 
     test "user fails to add a new car with invalid data" do
@@ -68,6 +72,30 @@ class CarsTest < ActionDispatch::IntegrationTest
       fill_in t('cars.form.model'), with: ""
       click_on t('buttons.submit')
       assert has_content? t('cars.form.failed_update')
+    end
+  end
+
+  describe "editing a car image" do
+    before do
+      visit car_path(cars(:two))
+      click_link t('crud.edit')
+      attach_file t('cars.form.image'),'test/fixtures/images/valid_image.jpg'
+      click_on t('buttons.submit')
+      click_link t('crud.edit')
+    end
+
+    test "user can change the car image" do
+      attach_file t('cars.form.image'),'test/fixtures/images/another_valid_image.png'
+      click_on t('buttons.submit')
+      assert has_selector? "img[alt='Another valid image']"
+    end
+
+    test "user can remove a car image" do
+      check t('cars.form.remove_image')
+      click_on t('buttons.submit')
+      within 'table' do
+        assert_not has_selector? 'img'
+      end
     end
   end
 
