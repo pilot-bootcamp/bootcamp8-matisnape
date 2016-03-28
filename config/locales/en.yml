@@ -73,6 +73,7 @@ en:
     title: Cars
     model: Model
     registration: Registration number
+    image: Image
     add_new: Add new car
     edit_car: Edit Car
     not_found: There's no such car
