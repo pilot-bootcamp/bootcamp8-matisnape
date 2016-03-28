@@ -21,7 +21,9 @@ class CarsTest < ActionDispatch::IntegrationTest
     end
 
     test "user sees particular car details when clicking Show" do
-      click_link t('crud.show'), match: :first
+      within :xpath, "//*[contains(text(), '#{cars(:one).model}')]/.." do
+        click_link t('crud.show')
+      end
       assert has_content? "PZ12345 Fiat Panda"
       assert_not has_content? "WE65432 Ford Escort"
     end
@@ -71,7 +73,9 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   describe "removing a car" do
     test "user removes a car successfully" do
-      page.accept_confirm { click_link t('crud.delete'), match: :first }
+      within :xpath, "//*[contains(text(), '#{cars(:one).model}')]/.." do
+        page.accept_confirm { click_link t('crud.delete') }
+      end
       assert_not has_content? "PZ12345 Fiat Panda"
       assert has_content? t('cars.form.delete_success')
     end
