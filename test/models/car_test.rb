@@ -11,17 +11,20 @@ class CarTest < ActiveSupport::TestCase
 
   test "Invalid without registration number" do
     @car.registration_number = ""
-    assert_not @car.valid?, "can't be blank"
+    assert_not @car.valid?
+    assert_equal ["can't be blank"], @car.errors.messages[:registration_number]
   end
 
   test "Invalid without model" do
     @car.model = ""
-    assert_not @car.valid?, "can't be blank"
+    assert_not @car.valid?
+    assert_equal ["can't be blank"], @car.errors.messages[:model]
   end
 
   test "Invalid without owner" do
     @car.owner = nil
-    assert_not @car.valid?, "can't be blank"
+    assert_not @car.valid?
+    assert_equal ["can't be blank"], @car.errors.messages[:owner]
   end
 
   test "URL contains model name" do
@@ -30,12 +33,14 @@ class CarTest < ActiveSupport::TestCase
 
   test "Validates car image file size" do
     @car.image = Rails.root + 'test/fixtures/images/too_big_image.png'
-    assert_not @car.valid?, "Your image is too big"
+    assert_not @car.valid?
+    assert_equal ["Your image is too big"], @car.errors.messages[:image]
   end
 
   test "Validates car image file format" do
     @car.image = Rails.root + 'test/fixtures/images/wrong_file_format.pdf'
-    assert_not @car.valid?, "Only jpg, png and gif are accepted."
+    assert_not @car.valid?
+    assert_equal ["Only jpg, png and gif are accepted."], @car.errors.messages[:image]
   end
 
   test "Valid with valid image" do
