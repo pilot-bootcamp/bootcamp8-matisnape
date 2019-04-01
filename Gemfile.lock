@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/alexpeattie/heroku_secrets.git
+  remote: https://github.com/alexpeattie/heroku_secrets.git
   revision: 717af8e0acf399bc88d2c8c1a7e230023942af0f
   specs:
     heroku_secrets (0.0.2)
@@ -61,9 +61,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.8.0)
-      capybara (>= 2.3.0, < 2.7.0)
-      json
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
@@ -262,7 +259,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass
   capybara
-  capybara-webkit
   coffee-rails (~> 4.1.0)
   database_cleaner
   dragonfly (~> 1.0.12)
@@ -291,5 +287,8 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate (~> 3.0.6)
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.16.6

@@ -33,7 +33,7 @@ gem 'i18n'
 gem 'rails-i18n'
 gem 'newrelic_rpm'
 gem 'will_paginate', '~> 3.0.6'
-gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+gem 'heroku_secrets', git: 'https://github.com/alexpeattie/heroku_secrets.git'
 gem 'omniauth-facebook'
 gem 'dragonfly', '~> 1.0.12'
 gem 'rack-cache', require: 'rack/cache'
@@ -54,7 +54,7 @@ end
 group :test do
   gem "minitest-rails"
   gem 'capybara'
-  gem 'capybara-webkit'
+  # gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
 end
